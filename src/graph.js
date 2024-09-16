@@ -37,7 +37,6 @@ export async function callMsGraph(accessToken) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
     const data = await response.json();
-    console.log("Devices Data:", data);
     return data;
   } catch (error) {
     console.error("Error fetching devices:", error);
