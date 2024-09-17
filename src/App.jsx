@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./styles/App.css";
 import { PageLayout } from "./components/PageLayout";
 import {
@@ -6,7 +6,6 @@ import {
   UnauthenticatedTemplate,
   useMsal,
 } from "@azure/msal-react";
-import Button from "react-bootstrap/Button";
 import { loginRequest } from "./authConfig";
 import { callMsGraph } from "./graph";
 import { ProfileData } from "./components/ProfileData";
@@ -31,16 +30,14 @@ const ProfileContent = () => {
       });
   }
 
+  useEffect(() => {
+    RequestProfileData();
+  });
+
   return (
     <>
       <h5 className="card-title">Welcome {accounts[0].name}</h5>
-      {graphData ? (
-        <ProfileData graphData={graphData} />
-      ) : (
-        <Button variant="secondary" onClick={RequestProfileData}>
-          Request Profile Information
-        </Button>
-      )}
+      {graphData ? <ProfileData graphData={graphData} /> : <p>Loading</p>}
     </>
   );
 };
