@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./styles/App.css";
-import { PageLayout } from "./components/PageLayout";
+import { PageLayout } from "./components/Navbar";
 import {
   AuthenticatedTemplate,
   UnauthenticatedTemplate,
@@ -9,6 +8,7 @@ import {
 import { loginRequest } from "./authConfig";
 import { callMsGraph } from "./graph";
 import { ProfileData } from "./components/ProfileData";
+import Grid from "./components/Grid";
 
 /**
  * Renders information about the signed-in user or a button to retrieve data about the user
@@ -37,7 +37,8 @@ const ProfileContent = () => {
   return (
     <>
       <h5 className="card-title">Welcome {accounts[0].name}</h5>
-      {graphData ? <ProfileData graphData={graphData} /> : <p>Loading</p>}
+      <Grid />
+      {/* {graphData ? <ProfileData graphData={graphData} /> : <p>Loading</p>} */}
     </>
   );
 };
@@ -63,8 +64,9 @@ const MainContent = () => {
 
 export default function App() {
   return (
-    <PageLayout>
+    <>
+      <PageLayout />
       <MainContent />
-    </PageLayout>
+    </>
   );
 }
