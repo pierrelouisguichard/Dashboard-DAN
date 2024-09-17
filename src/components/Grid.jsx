@@ -2,46 +2,34 @@ import React from "react";
 import styled from "styled-components";
 
 const GridContainer = styled.div`
+  width: 100%;
   background-color: blue;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  width: 80%;
-  height: 90vh;
-  margin: 0 auto;
-  gap: 10px; /* Adjust gap as needed */
-
-  /* Responsive Design */
-  @media (max-width: 1024px) {
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-  }
-
-  @media (max-width: 768px) {
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(4, 1fr);
-  }
-
-  @media (max-width: 480px) {
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(8, 1fr);
-  }
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 16px;
+  padding: 16px;
 `;
 
 const GridItem = styled.div`
-  background-color: #ccc; /* Example background color */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  padding: 16px;
+  text-align: center;
+  /* Default size */
+  grid-column: span 1;
+  grid-row: span 1;
+  height: 200px;
 `;
 
 const Grid = () => {
   return (
     <GridContainer>
-      {[...Array(8)].map((_, index) => (
-        <GridItem key={index}>Item {index + 1}</GridItem>
-      ))}
+      <GridItem>Item 1</GridItem>
+      <GridItem>Item 2</GridItem>
+      <GridItem>Item 3</GridItem>
+      <GridItem>Item 4</GridItem>
+      <GridItem>Item 5</GridItem>
+      <GridItem>Item 6</GridItem>
     </GridContainer>
   );
 };
