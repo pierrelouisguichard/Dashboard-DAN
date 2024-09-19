@@ -20,7 +20,7 @@ import { graphConfig } from "./authConfig";
 //         .catch(error => console.log(error));
 // }
 
-export async function callMsGraph(accessToken) {
+export async function fetchDeviceData(accessToken) {
   const headers = new Headers();
   const bearer = `Bearer ${accessToken}`;
 

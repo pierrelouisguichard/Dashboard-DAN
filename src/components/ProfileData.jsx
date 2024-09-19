@@ -2,19 +2,19 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 const TableWrapper = styled.div`
-  width: 400px;
-  overflow-x: auto;
-  /* margin: 20px auto; */
+  width: 100%;
+  max-width: 1200px; /* Adjust as needed */
+  margin: 0 auto; /* Center horizontally */
+  overflow-x: auto; /* Allows horizontal scrolling if needed */
 `;
 
 const Table = styled.table`
   width: 100%;
-  max-width: 1200px;
   border-collapse: collapse;
-  margin: 0 auto;
   font-size: 12px;
   text-align: left;
   border: 1px solid #ddd;
+  margin: 0 auto; /* Center table horizontally within TableWrapper */
 `;
 
 const Thead = styled.thead`
