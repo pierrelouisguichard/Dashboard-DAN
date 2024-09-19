@@ -41,10 +41,18 @@ const ProfileContent = () => {
     <>
       {/* <h5 className="card-title">Welcome {accounts[0].name}</h5> */}
       <Container>
-        <Grid />
+        {/* <Grid /> */}
+        {graphData ? (
+          <ProfileData graphData={graphData} OS={"IPhone"} />
+        ) : (
+          <p>Loading</p>
+        )}
+        {graphData ? (
+          <ProfileData graphData={graphData} OS={"Windows"} />
+        ) : (
+          <p>Loading</p>
+        )}
       </Container>
-
-      {graphData ? <ProfileData graphData={graphData} /> : <p>Loading</p>}
     </>
   );
 };
@@ -78,7 +86,7 @@ export default function App() {
 }
 
 const Container = styled.div`
-  background-color: green;
+  /* background-color: green; */
   max-width: 1800px;
   margin: 0 auto; // Centers the container horizontally
   display: flex; // Optional: If you want to use flex properties inside the container

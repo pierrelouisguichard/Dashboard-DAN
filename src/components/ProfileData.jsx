@@ -35,8 +35,12 @@ const Td = styled.td`
   border-bottom: 1px solid #ddd;
 `;
 
-export const ProfileData = ({ graphData }) => {
-  const devices = graphData.value;
+export const ProfileData = ({ graphData, OS }) => {
+  const devices = graphData.value.filter(
+    (device) => device.operatingSystem === OS
+  );
+  const displayedDevices = devices.slice(0, 12);
+  const remainingDevices = devices.length - displayedDevices.length;
 
   return (
     <div>
@@ -48,15 +52,22 @@ export const ProfileData = ({ graphData }) => {
           </Tr>
         </Thead>
         <Tbody>
-          {devices.map((device, index) => (
+          {displayedDevices.map((device, index) => (
             <Tr key={index}>
               <Td>{device.displayName}</Td>
-              <Td>{device.model || "N/A"}</Td>{" "}
-              {/* Fallback to 'N/A' if model is not provided */}
+              <Td>{device.model || "N/A"}</Td>
             </Tr>
           ))}
         </Tbody>
       </Table>
+      {remainingDevices > 0 && (
+        <div>
+          <p>
+            And {remainingDevices} more device{remainingDevices > 1 ? "s" : ""}
+            ...
+          </p>
+        </div>
+      )}
     </div>
   );
 };

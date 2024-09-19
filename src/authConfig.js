@@ -47,6 +47,5 @@ export const loginRequest = {
 
 export const graphConfig = {
   graphMeEndpoint: "https://graph.microsoft.com/v1.0/me",
-  graphDevicesEndpoint:
-    "https://graph.microsoft.com/v1.0/devices?$filter=operatingSystem eq 'IPhone'",
+  graphDevicesEndpoint: "https://graph.microsoft.com/v1.0/devices",
 };
