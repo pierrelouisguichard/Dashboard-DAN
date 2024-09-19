@@ -8,17 +8,20 @@ export const PageLayout = () => {
   const isAuthenticated = useIsAuthenticated();
 
   return (
-    <NavbarContainer>
-      <NavbarBrand href="/">d'Angelin Dashboard</NavbarBrand>
-      <NavbarRight>
-        {isAuthenticated ? <SignOutButton /> : <SignInButton />}
-      </NavbarRight>
-    </NavbarContainer>
+    <Container>
+      <NavbarContainer>
+        <NavbarBrand href="/">d'Angelin Dashboard</NavbarBrand>
+        <NavbarRight>
+          {isAuthenticated ? <SignOutButton /> : <SignInButton />}
+        </NavbarRight>
+      </NavbarContainer>
+    </Container>
   );
 };
 
 const NavbarContainer = styled.nav`
-  background-color: #232323;
+  width: 100%;
+  max-width: 1800px;
   padding: 0.5rem 1rem;
   display: flex;
   justify-content: space-between;
@@ -39,4 +42,12 @@ const NavbarBrand = styled.a`
 const NavbarRight = styled.div`
   display: flex;
   justify-content: flex-end;
+`;
+
+const Container = styled.div`
+  background-color: #232323;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;

@@ -39,7 +39,6 @@ const ProfileContent = () => {
 
   return (
     <>
-      {/* <h5 className="card-title">Welcome {accounts[0].name}</h5> */}
       <Container>
         {/* <Grid /> */}
         {graphData ? (
