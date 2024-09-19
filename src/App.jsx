@@ -9,7 +9,7 @@ import { loginRequest } from "./authConfig";
 import { callMsGraph } from "./graph";
 import { ProfileData } from "./components/ProfileData";
 import styled from "styled-components";
-import Grid from "./components/Grid";
+import GridLayout from "./components/Grid";
 
 /**
  * Renders information about the signed-in user or a button to retrieve data about the user
@@ -37,20 +37,42 @@ const ProfileContent = () => {
     }
   }, [accounts]); // Runs only when `accounts` changes
 
-  return (
-    <>
-      <Container>
-        {/* <Grid /> */}
-        {graphData ? (
-          <ProfileData graphData={graphData} OS={"IPhone"} />
-        ) : (
-          <p>Loading</p>
-        )}
+  const Container = styled.div`
+    display: flex;
+    justify-content: space-between;
+    gap: 20px; // Adjust gap between the tables as needed
+    flex-wrap: wrap; // Ensures responsiveness
+  `;
+
+  const TableContainer = styled.div`
+    flex: 1;
+    min-width: 300px; // Ensures each table has a minimum width
+    // Add additional styling as needed
+  `;
+
+  const CustomSection = () => (
+    <Container>
+      <TableContainer>
         {graphData ? (
           <ProfileData graphData={graphData} OS={"Windows"} />
         ) : (
           <p>Loading</p>
         )}
+      </TableContainer>
+      <TableContainer>
+        {graphData ? (
+          <ProfileData graphData={graphData} OS={"IPhone"} />
+        ) : (
+          <p>Loading</p>
+        )}
+      </TableContainer>
+    </Container>
+  );
+
+  return (
+    <>
+      <Container>
+        <GridLayout section={<CustomSection />} />
       </Container>
     </>
   );
