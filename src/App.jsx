@@ -44,7 +44,7 @@ const ProfileContent = () => {
         <Grid />
       </Container>
 
-      {/* {graphData ? <ProfileData graphData={graphData} /> : <p>Loading</p>} */}
+      {graphData ? <ProfileData graphData={graphData} /> : <p>Loading</p>}
     </>
   );
 };
