@@ -37,7 +37,7 @@ const ProfileContent = () => {
     }
   }, [accounts]); // Runs only when `accounts` changes
 
-  const Container = styled.div`
+  const Container2 = styled.div`
     display: flex;
     justify-content: space-between;
     gap: 20px; // Adjust gap between the tables as needed
@@ -51,7 +51,7 @@ const ProfileContent = () => {
   `;
 
   const CustomSection = () => (
-    <Container>
+    <Container2>
       <TableContainer>
         {graphData ? (
           <ProfileData graphData={graphData} OS={"Windows"} />
@@ -66,13 +66,13 @@ const ProfileContent = () => {
           <p>Loading</p>
         )}
       </TableContainer>
-    </Container>
+    </Container2>
   );
 
   return (
     <>
       <Container>
-        <GridLayout section={<CustomSection />} />
+        <GridLayout />
       </Container>
     </>
   );
