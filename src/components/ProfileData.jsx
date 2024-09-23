@@ -8,22 +8,39 @@ const TableWrapper = styled.div`
   overflow-x: auto; /* Allows horizontal scrolling if needed */
 `;
 
+const Title = styled.h2`
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  background-color: #e7e7e7;
+  border: none;
+  color: #333;
+  padding: 5px;
+  margin: 0px;
+`;
+
+const TableContainer = styled.div`
+  max-height: 38vh; /* Set a max height for vertical scrolling */
+  overflow-y: auto; /* Allows vertical scrolling if needed */
+`;
+
 const Table = styled.table`
   width: 100%;
   border-collapse: collapse;
-  font-size: 12px;
-  text-align: left;
-  border: 1px solid #ddd;
+  font-size: 14px;
+  border: none;
   margin: 0 auto; /* Center table horizontally within TableWrapper */
 `;
 
 const Thead = styled.thead`
   background-color: #f4f4f4;
+  position: sticky; /* Make the header sticky */
+  top: 0; /* Stick to the top */
+  z-index: 10; /* Ensure it is above other content */
 `;
 
 const Th = styled.th`
-  padding: 5px;
-  border-bottom: 2px solid #ccc;
+  padding: 8px;
   font-weight: bold;
   color: #333;
   text-align: center;
@@ -42,130 +59,64 @@ const Tr = styled.tr`
 `;
 
 const Td = styled.td`
-  padding: 5px;
-  border-bottom: 1px solid #ddd;
-  text-align: center;
+  padding: 8px;
+  text-align: left; /* Align text to the left */
   color: #555;
 `;
 
-const PaginationWrapper = styled.div`
-  font-size: 12px;
-  display: flex;
-  justify-content: center;
-  margin: 10px 0;
-`;
-
-const PaginationButton = styled.button`
-  margin: 0 5px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  cursor: pointer;
-  border-radius: 4px;
-
-  &:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-  }
-`;
-
-const Title = styled.h2`
-  font-size: 14px;
-  font-weight: bold;
-  text-align: center;
-  background-color: #e7e7e7;
-  border: 1px solid #ddd;
-  color: #333;
-  padding: 5px;
-  margin: 0px;
-`;
-
 export const ProfileData = ({ graphData, OS }) => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [sortOrder, setSortOrder] = useState("asc"); // State to keep track of sort order (ascending by default)
-  const itemsPerPage = 12;
+  const [sortOrder, setSortOrder] = useState("desc");
+  const [sortBy, setSortBy] = useState("model"); // State to track current sort column
 
-  // Filter devices based on OS
   const devices = graphData.value.filter(
     (device) => device.operatingSystem === OS
   );
 
-  // Sort devices by model based on sortOrder
   const sortedDevices = [...devices].sort((a, b) => {
-    const modelA = a.model || "";
-    const modelB = b.model || "";
+    const valueA = sortBy === "model" ? a.model || "" : a.displayName;
+    const valueB = sortBy === "model" ? b.model || "" : b.displayName;
 
-    if (sortOrder === "asc") {
-      return modelA.localeCompare(modelB);
-    } else {
-      return modelB.localeCompare(modelA);
-    }
+    return sortOrder === "asc"
+      ? valueA.localeCompare(valueB)
+      : valueB.localeCompare(valueA);
   });
 
-  // Calculate total pages
-  const totalPages = Math.ceil(sortedDevices.length / itemsPerPage);
-
-  // Calculate current devices to display
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const currentDevices = sortedDevices.slice(
-    startIndex,
-    startIndex + itemsPerPage
-  );
-
-  // Handle next and previous page
-  const goToNextPage = () => {
-    if (currentPage < totalPages) setCurrentPage(currentPage + 1);
-  };
-
-  const goToPreviousPage = () => {
-    if (currentPage > 1) setCurrentPage(currentPage - 1);
-  };
-
-  // Toggle sort order between ascending and descending
-  const toggleSortOrder = () => {
-    setSortOrder((prevOrder) => (prevOrder === "asc" ? "desc" : "asc"));
+  const toggleSortOrder = (column) => {
+    if (sortBy === column) {
+      setSortOrder((prevOrder) => (prevOrder === "asc" ? "desc" : "asc"));
+    } else {
+      setSortBy(column);
+      setSortOrder("asc"); // Default to ascending when changing sort column
+    }
   };
 
   return (
     <TableWrapper>
       <Title>{OS} Devices List</Title>
-      <Table>
-        <Thead>
-          <Tr>
-            <Th>Device Name</Th>
-            <Th onClick={toggleSortOrder}>
-              Model {sortOrder === "asc" ? "↑" : "↓"}{" "}
-              {/* Show arrow based on sort order */}
-            </Th>
-          </Tr>
-        </Thead>
-        <Tbody>
-          {currentDevices.map((device, index) => (
-            <Tr key={index}>
-              <Td>{device.displayName}</Td>
-              <Td>{device.model || "N/A"}</Td>
+      <TableContainer>
+        <Table>
+          <Thead>
+            <Tr>
+              <Th>#</Th> {/* Number column header */}
+              <Th onClick={() => toggleSortOrder("displayName")}>
+                Device Name {sortOrder === "asc" ? "↑" : "↓"}
+              </Th>
+              <Th onClick={() => toggleSortOrder("model")}>
+                Model {sortOrder === "asc" ? "↑" : "↓"}
+              </Th>
             </Tr>
-          ))}
-        </Tbody>
-      </Table>
-
-      <PaginationWrapper>
-        <PaginationButton
-          onClick={goToPreviousPage}
-          disabled={currentPage === 1}
-        >
-          Previous
-        </PaginationButton>
-        <span>
-          Page {currentPage} of {totalPages}
-        </span>
-        <PaginationButton
-          onClick={goToNextPage}
-          disabled={currentPage === totalPages}
-        >
-          Next
-        </PaginationButton>
-      </PaginationWrapper>
+          </Thead>
+          <Tbody>
+            {sortedDevices.map((device, index) => (
+              <Tr key={index}>
+                <Td>{index + 1}</Td> {/* Row number */}
+                <Td>{device.displayName}</Td>
+                <Td>{device.model || "N/A"}</Td>
+              </Tr>
+            ))}
+          </Tbody>
+        </Table>
+      </TableContainer>
     </TableWrapper>
   );
 };

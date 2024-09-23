@@ -1,0 +1,155 @@
+{
+  "Calendar (Q3)": [
+    {
+      "No": 1,
+      "Details": "CSC Meeting #10",
+      "Date": "1/10/2024"
+    },
+    {
+      "No": 2,
+      "Details": "Penetration test",
+      "Date": "15/10/2024"
+    },
+    {
+      "No": 3,
+      "Details": "Cyber Awareness",
+      "Date": "1/11/2024"
+    },
+    {
+      "No": 4,
+      "Details": "Cyber Essentials",
+      "Date": "12/11/2020"
+    },
+    {
+      "No": 5,
+      "Details": "Launch Security Policy",
+      "Date": "2/12/2024"
+    },
+    {
+      "No": 6,
+      "Details": "Cyber Awareness",
+      "Date": "2/3/2024"
+    },
+    {
+      "No": 7,
+      "Details": "CSC Meeting #11",
+      "Date": "12/3/2025"
+    }
+  ],
+  "Cyber Risk (Q3)": [
+    {
+      "No": 1,
+      "Risk Name": "Ransomware Attack",
+      "Likelihood": 4,
+      "Impact": 4,
+      "Threat": 20
+    },
+    {
+      "No": 2,
+      "Risk Name": "Corporate Espionage",
+      "Likelihood": 3,
+      "Impact": 4,
+      "Threat": 15
+    },
+    {
+      "No": 3,
+      "Risk Name": "Data Breach / Exfiltration",
+      "Likelihood": 3,
+      "Impact": 4,
+      "Threat": 15
+    },
+    {
+      "No": 4,
+      "Risk Name": "Phishing & Spear Fishing",
+      "Likelihood": 3,
+      "Impact": 3,
+      "Threat": 12
+    },
+    {
+      "No": 5,
+      "Risk Name": "Insider Threat",
+      "Likelihood": 3,
+      "Impact": 3,
+      "Threat": 12
+    },
+    {
+      "No": 6,
+      "Risk Name": "Business Email Compromise (BEC)",
+      "Likelihood": 3,
+      "Impact": 3,
+      "Threat": 12
+    },
+    {
+      "No": 7,
+      "Risk Name": "Third Party Vendor Risk",
+      "Likelihood": 3,
+      "Impact": 3,
+      "Threat": 12
+    },
+    {
+      "No": 8,
+      "Risk Name": "Regulatory Compliance Failure",
+      "Likelihood": 3,
+      "Impact": 2,
+      "Threat": 9
+    },
+    {
+      "No": 9,
+      "Risk Name": "Advanced Persistent Threat (APT)",
+      "Likelihood": 1,
+      "Impact": 4,
+      "Threat": 5
+    },
+    {
+      "No": 10,
+      "Risk Name": "Distributed Denial of Service (DDoS)",
+      "Likelihood": 2,
+      "Impact": 1,
+      "Threat": 4
+    }
+  ],
+  "Key Cyber Metrics (Q1)": [
+    {
+      "No": 1,
+      "Metric Description": "% of System with Latest AV Applied",
+      "Score": "90%",
+      "Idea from SS": "90%"
+    },
+    {
+      "No": 2,
+      "Metric Description": "% of Devices with latest patches",
+      "Score": "85%",
+      "Idea from SS": "85%"
+    },
+    {
+      "No": 3,
+      "Metric Description": "Vulnerability Status Internal",
+      "Score": "85%",
+      "Idea from SS": "85%"
+    },
+    {
+      "No": 4,
+      "Metric Description": "Vulnerability Status External",
+      "Score": "100%",
+      "Idea from SS": "100%"
+    },
+    {
+      "No": 5,
+      "Metric Description": "Prevailing Risk Status",
+      "Score": "65%",
+      "Idea from SS": "65%"
+    },
+    {
+      "No": 6,
+      "Metric Description": "Cyber Security Awareness Status",
+      "Score": "55%",
+      "Idea from SS": "55%"
+    },
+    {
+      "No": 7,
+      "Metric Description": "Software Audit Status",
+      "Score": "55%",
+      "Idea from SS": "55%"
+    }
+  ]
+}

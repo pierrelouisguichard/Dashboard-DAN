@@ -11,50 +11,61 @@ function Item7() {
   const { instance, accounts } = useMsal();
   const [deviceData, setDeviceData] = useState(null);
 
-  function RequestDeviceData() {
-    instance
-      .acquireTokenSilent({
-        ...loginRequest,
-        account: accounts[0],
-      })
-      .then((response) => {
-        fetchDeviceData(response.accessToken).then((response) => {
-          setDeviceData(response);
-        });
-      });
-  }
-
   useEffect(() => {
     if (accounts && accounts.length > 0) {
-      RequestDeviceData();
+      const acquireTokenAndFetchData = async () => {
+        try {
+          const response = await instance.acquireTokenSilent({
+            ...loginRequest,
+            account: accounts[0],
+          });
+          const data = await fetchDeviceData(response.accessToken);
+          setDeviceData(data);
+        } catch (error) {
+          console.error("Error fetching device data", error);
+        }
+      };
+      acquireTokenAndFetchData();
     }
-  }, [accounts]);
+  }, [accounts, instance]);
+
+  const renderProfileData = (os) => {
+    if (!deviceData) {
+      return <p>Loading</p>;
+    }
+    return <ProfileData graphData={deviceData} OS={os} />;
+  };
 
   return (
     <Item colSpan={2} rowSpan={2} smallColSpan={1} smallRowSpan={4}>
-      <Container2>
-        <TableContainer>
-          {deviceData ? (
-            <ProfileData graphData={deviceData} OS={"Windows"} />
-          ) : (
-            <p>Loading</p>
-          )}
-        </TableContainer>
-        <TableContainer>
-          {deviceData ? (
-            <ProfileData graphData={deviceData} OS={"IPhone"} />
-          ) : (
-            <p>Loading</p>
-          )}
-        </TableContainer>
-      </Container2>
+      <Container>
+        <Title>Devices</Title>
+        <TableWrapper>
+          <TableContainer>{renderProfileData("Windows")}</TableContainer>
+          <TableContainer>{renderProfileData("IPhone")}</TableContainer>
+        </TableWrapper>
+      </Container>
     </Item>
   );
 }
 
 export default Item7;
 
-const Container2 = styled.div`
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+`;
+
+const Title = styled.div`
+  margin-top: 10px;
+  font-size: 28px; /* Adjust the size as needed */
+  font-weight: bold; /* Makes the title stand out */
+`;
+
+const TableWrapper = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
