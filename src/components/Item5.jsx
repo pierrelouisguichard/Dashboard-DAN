@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Item from "./Item";
 import stats from "../data/stats.json";
+import Title from "./Title";
 
 const Container = styled.div`
   display: flex;
@@ -9,12 +10,6 @@ const Container = styled.div`
   align-items: center;
   width: 100%;
   height: 100%;
-`;
-
-const Title = styled.div`
-  margin-top: 10px;
-  font-size: 28px; /* Adjust the size as needed */
-  font-weight: bold; /* Makes the title stand out */
 `;
 
 const TableWrapper = styled.div`
@@ -83,7 +78,7 @@ function Item5() {
   return (
     <Item colSpan={1} rowSpan={1}>
       <Container>
-        <Title>Key Dates (Q3)</Title>
+        <Title text="Title" />
         <TableWrapper>
           <KeyDatesTable data={keyDates} />
         </TableWrapper>

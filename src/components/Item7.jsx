@@ -6,6 +6,7 @@ import { loginRequest } from "../authConfig";
 import { fetchDeviceData } from "../graph";
 import { ProfileData } from "../components/ProfileData";
 import { useMsal } from "@azure/msal-react";
+import Title from "./Title";
 
 function Item7() {
   const { instance, accounts } = useMsal();
@@ -39,7 +40,7 @@ function Item7() {
   return (
     <Item colSpan={2} rowSpan={2} smallColSpan={1} smallRowSpan={4}>
       <Container>
-        <Title>Devices</Title>
+        <Title text="Title" />
         <TableWrapper>
           <TableContainer>{renderProfileData("Windows")}</TableContainer>
           <TableContainer>{renderProfileData("IPhone")}</TableContainer>
@@ -57,12 +58,6 @@ const Container = styled.div`
   align-items: center;
   width: 100%;
   height: 100%;
-`;
-
-const Title = styled.div`
-  margin-top: 10px;
-  font-size: 28px; /* Adjust the size as needed */
-  font-weight: bold; /* Makes the title stand out */
 `;
 
 const TableWrapper = styled.div`

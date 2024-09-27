@@ -3,21 +3,14 @@ import Item from "./Item";
 import picture1 from "../assets/cyber_essentials.png";
 import picture2 from "../assets/cyber_essentials_plus.png";
 import styled from "styled-components";
+import Title from "./Title";
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
-  margin: 20px;
-  justify-content: space-between;
-  height: 100%; /* Allow it to take full height if necessary */
-`;
-
-const Title = styled.div`
-  margin-top: 10px;
-  font-size: 28px; /* Adjust the size as needed */
-  font-weight: bold; /* Makes the title stand out */
+  width: 100%;
+  height: 100%;
 `;
 
 const ImagesWrapper = styled.div`
@@ -54,7 +47,7 @@ function Item4() {
   return (
     <Item colSpan={1} rowSpan={1}>
       <Container>
-        <Title>Cyber Essentials Status</Title>
+        <Title text="Cyber Essentials Status" />
         <ImagesWrapper>
           <StyledImage src={picture1} alt="Description of picture 1" />
           <StyledImage src={picture2} alt="Description of picture 2" />
