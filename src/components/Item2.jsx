@@ -1,6 +1,5 @@
 import React from "react";
 import Item from "./Item";
-import Gauge from "./Gauge";
 import styled from "styled-components";
 import Title from "./Title";
 
@@ -8,8 +7,7 @@ function Item2() {
   return (
     <Item colSpan={1} rowSpan={2}>
       <Container>
-        <Title text="Title" />
-        {/* <Gauge value={65} /> */}
+        <Title text="Cyber Security Posture Metrics" />
       </Container>
     </Item>
   );

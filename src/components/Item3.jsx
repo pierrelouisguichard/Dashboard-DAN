@@ -30,7 +30,7 @@ function Item3() {
   return (
     <Item colSpan={1} rowSpan={2}>
       <Container>
-        <Title text="Title" />
+        <Title text="Cyber Risk Head Map" />
         <ScatterChart width={500} height={300}>
           <CartesianGrid />
           <ReferenceArea

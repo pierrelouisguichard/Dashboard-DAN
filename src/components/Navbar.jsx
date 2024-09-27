@@ -1,8 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useIsAuthenticated } from "@azure/msal-react";
-import { SignInButton } from "./SignInButton";
-import { SignOutButton } from "./SignOutButton";
+import { SignInButton, SignOutButton } from "./AuthButtons";
 
 export const PageLayout = () => {
   const isAuthenticated = useIsAuthenticated();
@@ -10,7 +9,7 @@ export const PageLayout = () => {
   return (
     <Container>
       <NavbarContainer>
-        <NavbarBrand href="/">d'Angelin Dashboard</NavbarBrand>
+        <NavbarBrand href="/">d'Angelin Cyber Security Dashboard</NavbarBrand>
         <NavbarRight>
           {isAuthenticated ? <SignOutButton /> : <SignInButton />}
         </NavbarRight>
@@ -21,8 +20,8 @@ export const PageLayout = () => {
 
 const NavbarContainer = styled.nav`
   width: 100%;
-  max-width: 1800px;
-  padding: 0.5rem 1rem;
+  max-width: 2800px;
+  padding: 1.5rem 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -30,9 +29,10 @@ const NavbarContainer = styled.nav`
 `;
 
 const NavbarBrand = styled.a`
-  color: white;
+  color: #efefef;
   text-decoration: none;
-  font-size: 1.25rem;
+  font-size: 3rem;
+  font-weight: bold;
   &:hover {
     color: white;
     text-decoration: none;

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Table,
   TableBody,
@@ -10,34 +10,95 @@ import {
 import styled from "styled-components";
 
 const StyledTableContainer = styled(TableContainer)`
-  height: 100%; /* Fill the height of the parent container */
-  background-color: transparent; /* Set background to transparent */
-  box-shadow: none; /* Remove any box shadow from Paper */
-  overflow-y: auto; /* Enable vertical scrolling */
+  height: 95%;
+  background-color: transparent;
+  box-shadow: none;
+  overflow-y: auto;
+
+  /* Custom Scrollbar */
+  scrollbar-width: thin;
+  scrollbar-color: #cacaca transparent;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #cacaca;
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: #a8a8a8;
+  }
 `;
 
 const StyledTable = styled(Table)`
-  background-color: transparent; /* Set table background to transparent */
+  background-color: transparent;
+  border-collapse: collapse;
 `;
 
 const StyledTableCell = styled(TableCell)`
   background-color: transparent;
-  cursor: pointer; /* Indicate that the header is clickable */
+  color: #333;
+  padding: 8px !important; /* Force reduced padding */
+  font-weight: 500;
+  font-size: 1.1rem !important; /* Increase font size */
 `;
 
 const StyledTableHead = styled(TableHead)`
+  cursor: pointer;
   background-color: #efefef;
   position: sticky;
   top: 0;
   z-index: 1;
 `;
 
+const StyledTableRow = styled(TableRow)`
+  &:nth-of-type(even) {
+    background-color: #f4f4f4; /* Light grey for even rows */
+  }
+
+  &:hover {
+    background-color: #e3f2fd; /* Light blue on hover */
+  }
+`;
+
+const SortIndicator = styled.span`
+  margin-left: 5px;
+  font-size: 1.1rem; /* Increase size for indicators */
+`;
+
 const DataTable = ({ label1, label2, data }) => {
   const [sortedData, setSortedData] = useState(data);
   const [sortConfig, setSortConfig] = useState({
-    column: "",
+    column: 0,
     direction: "asc",
   });
+
+  useEffect(() => {
+    sortData(sortConfig.column, sortConfig.direction, data);
+  }, [data]);
+
+  const sortData = (columnIndex, direction, dataToSort) => {
+    const sorted = [...dataToSort].sort((a, b) => {
+      const aValue = a[columnIndex];
+      const bValue = b[columnIndex];
+
+      if (typeof aValue === "string" && typeof bValue === "string") {
+        return direction === "asc"
+          ? aValue.localeCompare(bValue)
+          : bValue.localeCompare(aValue);
+      }
+
+      return direction === "asc" ? aValue - bValue : bValue - aValue;
+    });
+    setSortedData(sorted);
+  };
 
   const handleSort = (columnIndex) => {
     const direction =
@@ -45,35 +106,38 @@ const DataTable = ({ label1, label2, data }) => {
         ? "desc"
         : "asc";
 
-    const sorted = [...sortedData].sort((a, b) => {
-      if (a[columnIndex] < b[columnIndex]) return direction === "asc" ? -1 : 1;
-      if (a[columnIndex] > b[columnIndex]) return direction === "asc" ? 1 : -1;
-      return 0;
-    });
-
-    setSortedData(sorted);
+    sortData(columnIndex, direction, sortedData);
     setSortConfig({ column: columnIndex, direction });
+  };
+
+  const getSortIndicator = (columnIndex) => {
+    if (sortConfig.column !== columnIndex) return null;
+    return sortConfig.direction === "asc" ? "▲" : "▼";
   };
 
   return (
     <StyledTableContainer>
       <StyledTable>
         <StyledTableHead>
-          <TableRow>
+          <StyledTableRow>
+            <StyledTableCell></StyledTableCell>
             <StyledTableCell onClick={() => handleSort(0)}>
               {label1}
+              <SortIndicator>{getSortIndicator(0)}</SortIndicator>
             </StyledTableCell>
             <StyledTableCell onClick={() => handleSort(1)}>
               {label2}
+              <SortIndicator>{getSortIndicator(1)}</SortIndicator>
             </StyledTableCell>
-          </TableRow>
+          </StyledTableRow>
         </StyledTableHead>
         <TableBody>
           {sortedData.map(([deviceName, deviceType], index) => (
-            <TableRow key={index}>
+            <StyledTableRow key={index}>
+              <StyledTableCell>{index + 1}</StyledTableCell>
               <StyledTableCell>{deviceName}</StyledTableCell>
               <StyledTableCell>{deviceType}</StyledTableCell>
-            </TableRow>
+            </StyledTableRow>
           ))}
         </TableBody>
       </StyledTable>

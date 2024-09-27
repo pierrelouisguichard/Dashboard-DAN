@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const Item = styled.div`
   border-radius: 10px;
-  background-color: #efefef;
+  background-color: #f6f6f6;
   display: flex;
   align-items: center;
   justify-content: center;

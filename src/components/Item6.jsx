@@ -9,7 +9,7 @@ function Item6() {
   return (
     <Item colSpan={2} rowSpan={2} smallColSpan={1} smallRowSpan={4}>
       <Container>
-        <Title text="Title" />
+        <Title text="Vulnerability Management" />
         <Spider />
       </Container>
     </Item>

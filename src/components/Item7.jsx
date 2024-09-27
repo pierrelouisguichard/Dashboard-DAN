@@ -30,24 +30,31 @@ const Item7 = () => {
     fetchData();
   }, [accounts, instance]);
 
-  // Filter data only after deviceData is fetched
-  const filteredData =
+  const windowsData =
     deviceData.length > 0
       ? deviceData
           .filter((device) => device.operatingSystem === "Windows")
-          .map((device) => [device.displayName, device.operatingSystem])
-      : []; // Ensure filteredData is an empty array if deviceData is empty
+          .map((device) => [device.displayName, device.model])
+      : [];
+
+  const iPhoneData =
+    deviceData.length > 0
+      ? deviceData
+          .filter((device) => device.operatingSystem === "IPhone")
+          .map((device) => [device.displayName, device.model])
+      : [];
 
   return (
     <Item colSpan={2} rowSpan={2} smallColSpan={1} smallRowSpan={4}>
       <Container>
-        <Title text="Title" />
+        <Title text="d'Angelin Estate Stats (Computers & Mobiles)" />
         <TableWrapper>
           <DataTable
-            label1="Device Name"
-            label2="Operating System"
-            data={filteredData}
+            label1="Computer's Name"
+            label2="Model"
+            data={windowsData}
           />
+          <DataTable label1="iPhone's Name" label2="Model" data={iPhoneData} />
         </TableWrapper>
       </Container>
     </Item>

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Item from "./Item";
 import stats from "../data/stats.json";
 import Title from "./Title";
+import DataTable from "./DataTable";
 
 const Container = styled.div`
   display: flex;
@@ -18,69 +19,32 @@ const TableWrapper = styled.div`
   border-radius: 8px;
 `;
 
-const Table = styled.table`
-  width: 100%;
-  border-collapse: collapse;
-  margin: 0;
-  font-size: 14px;
-  min-width: 400px;
-
-  th,
-  td {
-    padding: 8px 20px;
-    text-align: left;
-    white-space: nowrap;
-  }
-
-  th {
-    background-color: #f4f4f4;
-    font-weight: 600;
-    text-transform: uppercase;
-    font-size: 14px;
-    position: sticky;
-    top: 0;
-    z-index: 1;
-  }
-
-  tr:nth-child(even) {
-    background-color: #f9f9f9;
-  }
-`;
-
-const KeyDatesTable = ({ data }) => (
-  <Table>
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>Details</th>
-        <th>Date</th>
-      </tr>
-    </thead>
-    <tbody>
-      {data.map((item) => (
-        <tr key={item.No}>
-          <td>{item.No}</td>
-          <td>{item.Details}</td>
-          <td>{item.Date}</td>
-        </tr>
-      ))}
-    </tbody>
-  </Table>
-);
-
 function Item5() {
   const [keyDates, setKeyDates] = useState([]);
 
   useEffect(() => {
-    setKeyDates(stats["Calendar (Q3)"]);
+    const rawData = stats["Calendar (Q3)"];
+
+    if (Array.isArray(rawData)) {
+      // Transform the data to match the expected format for DataTable
+      const transformedData = rawData.map(({ Details, Date }) => [
+        Details, // Use "Details" as the first entry
+        Date, // Use "Date" as the second entry
+      ]);
+
+      console.log("Transformed Data:", transformedData); // Log the transformed data for debugging
+      setKeyDates(transformedData);
+    } else {
+      console.error("Expected rawData to be an array.");
+    }
   }, []);
 
   return (
     <Item colSpan={1} rowSpan={1}>
       <Container>
-        <Title text="Title" />
+        <Title text="Calendar Events - Key Dates" />
         <TableWrapper>
-          <KeyDatesTable data={keyDates} />
+          <DataTable label1="Event" label2="Date" data={keyDates} />
         </TableWrapper>
       </Container>
     </Item>

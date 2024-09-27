@@ -8,7 +8,7 @@ function Item1() {
   return (
     <Item colSpan={1} rowSpan={2}>
       <Container>
-        <Title text="Title" />
+        <Title text="Cyber Security Posture Status" />
         <Gauge value={65} />
       </Container>
     </Item>
