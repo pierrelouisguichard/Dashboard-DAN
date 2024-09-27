@@ -6,6 +6,7 @@ const TableWrapper = styled.div`
   max-width: 1200px; /* Adjust as needed */
   margin: 0 auto; /* Center horizontally */
   overflow-x: auto; /* Allows horizontal scrolling if needed */
+  overflow-y: auto;
 `;
 
 const Title = styled.h2`
