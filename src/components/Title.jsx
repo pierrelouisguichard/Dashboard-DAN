@@ -19,7 +19,6 @@ const StyledTitle = styled.div`
   display: flex;
   align-items: center;
   justify-content: left;
-  border-bottom: 2px solid #ccc;
   margin: 0;
   position: relative;
   margin-top: 10px;

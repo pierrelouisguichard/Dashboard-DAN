@@ -11,7 +11,7 @@ const GridContainer = styled.div`
   margin: 0px auto;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(4, 21vh);
+  grid-template-rows: repeat(4, 20vh);
   max-width: 2800px;
   width: 100%;
   gap: 20px;
@@ -19,12 +19,12 @@ const GridContainer = styled.div`
 
   @media (max-width: 1700px) {
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(8, 21vh);
+    grid-template-rows: repeat(8, 20vh);
   }
 
   @media (max-width: 1000px) {
     grid-template-columns: repeat(1, 1fr);
-    grid-template-rows: repeat(16, 21vh);
+    grid-template-rows: repeat(16, 20vh);
   }
 `;
 

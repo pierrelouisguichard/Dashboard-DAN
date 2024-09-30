@@ -18,10 +18,11 @@ const ImagesWrapper = styled.div`
   flex-direction: row;
   justify-content: center;
   gap: 20px;
+  margin: 40px 0;
 
   @media (max-width: 600px) {
-    flex-direction: column; /* Stack images on small screens */
-    align-items: center; /* Center images */
+    flex-direction: column;
+    align-items: center;
   }
 `;
 
@@ -30,16 +31,16 @@ const StyledImage = styled.img`
   height: auto;
   max-height: 120px;
   object-fit: contain;
-  transition: transform 0.2s; /* Add transition for hover effect */
+  transition: transform 0.2s;
 
   &:hover {
-    transform: scale(1.05); /* Slightly enlarge on hover */
+    transform: scale(1.05);
   }
 `;
 
 const ExpirationText = styled.p`
-  margin-bottom: 10px; /* Add margin for spacing */
-  font-weight: bold; /* Make expiration text stand out */
+  margin-bottom: 10px;
+  font-weight: bold;
   font-size: 20px;
 `;
 

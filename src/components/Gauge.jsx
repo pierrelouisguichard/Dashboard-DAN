@@ -4,16 +4,16 @@ import GaugeComponent from "react-gauge-component";
 const Gauge = ({ value }) => {
   return (
     <>
-      <div style={{ width: "100%", height: "100%" }}>
+      <div style={{ width: "80%", height: "80%", maxWidth: "500px" }}>
         <GaugeComponent
           value={value}
           type="radial"
           labels={{
             valueLabel: {
               style: {
-                fontFamily: "roboto", // Font family
+                fontFamily: "helvetica", // Font family
                 fontSize: "35px", // Font size
-                fill: "#6a6a6a", // Color of the value label
+                fill: "#4b4b4b", // Color of the value label
               },
             },
             tickLabels: {

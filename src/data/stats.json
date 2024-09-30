@@ -39,70 +39,70 @@
   "Cyber Risk (Q3)": [
     {
       "No": 1,
-      "Risk Name": "Ransomware Attack",
+      "Name": "Ransomware Attack",
       "Likelihood": 4,
       "Impact": 4,
       "Threat": 20
     },
     {
       "No": 2,
-      "Risk Name": "Corporate Espionage",
+      "Name": "Corporate Espionage",
       "Likelihood": 3,
       "Impact": 4,
       "Threat": 15
     },
     {
       "No": 3,
-      "Risk Name": "Data Breach / Exfiltration",
+      "Name": "Data Breach / Exfiltration",
       "Likelihood": 3,
       "Impact": 4,
       "Threat": 15
     },
     {
       "No": 4,
-      "Risk Name": "Phishing & Spear Fishing",
+      "Name": "Phishing & Spear Fishing",
       "Likelihood": 3,
       "Impact": 3,
       "Threat": 12
     },
     {
       "No": 5,
-      "Risk Name": "Insider Threat",
+      "Name": "Insider Threat",
       "Likelihood": 3,
       "Impact": 3,
       "Threat": 12
     },
     {
       "No": 6,
-      "Risk Name": "Business Email Compromise (BEC)",
+      "Name": "Business Email Compromise (BEC)",
       "Likelihood": 3,
       "Impact": 3,
       "Threat": 12
     },
     {
       "No": 7,
-      "Risk Name": "Third Party Vendor Risk",
+      "Name": "Third Party Vendor Risk",
       "Likelihood": 3,
       "Impact": 3,
       "Threat": 12
     },
     {
       "No": 8,
-      "Risk Name": "Regulatory Compliance Failure",
+      "Name": "Regulatory Compliance Failure",
       "Likelihood": 3,
       "Impact": 2,
       "Threat": 9
     },
     {
       "No": 9,
-      "Risk Name": "Advanced Persistent Threat (APT)",
+      "Name": "Advanced Persistent Threat (APT)",
       "Likelihood": 1,
       "Impact": 4,
       "Threat": 5
     },
     {
       "No": 10,
-      "Risk Name": "Distributed Denial of Service (DDoS)",
+      "Name": "Distributed Denial of Service (DDoS)",
       "Likelihood": 2,
       "Impact": 1,
       "Threat": 4

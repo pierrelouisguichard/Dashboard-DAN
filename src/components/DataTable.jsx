@@ -52,7 +52,7 @@ const StyledTableCell = styled(TableCell)`
 
 const StyledTableHead = styled(TableHead)`
   cursor: pointer;
-  background-color: #efefef;
+  background-color: #f8f8f8;
   position: sticky;
   top: 0;
   z-index: 1;
@@ -60,7 +60,7 @@ const StyledTableHead = styled(TableHead)`
 
 const StyledTableRow = styled(TableRow)`
   &:nth-of-type(even) {
-    background-color: #f4f4f4; /* Light grey for even rows */
+    background-color: #f8f8f8; /* Light grey for even rows */
   }
 
   &:hover {

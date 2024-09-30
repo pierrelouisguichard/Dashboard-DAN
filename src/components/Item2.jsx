@@ -2,12 +2,14 @@ import React from "react";
 import Item from "./Item";
 import styled from "styled-components";
 import Title from "./Title";
+import KeyCyberMetrics from "./KeyCyberMetrics";
 
 function Item2() {
   return (
     <Item colSpan={1} rowSpan={2}>
       <Container>
         <Title text="Cyber Security Posture Metrics" />
+        <KeyCyberMetrics />
       </Container>
     </Item>
   );
