@@ -45,9 +45,10 @@ const NavbarRight = styled.div`
 `;
 
 const Container = styled.div`
-  background-color: #232323;
+  background-color: #3a3a3a; // Charcoal color
   margin: 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 10px; // Add some padding for a better look
 `;
