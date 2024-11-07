@@ -1,22 +1,41 @@
 import React from "react";
 import Header from "./Header";
+import Table from "./Table";
 import styled from "styled-components";
 
 function Joiners() {
+  const headers = ["Name", "Date"];
+  const rows = [
+    ["Person 1", "01 Jan 2024"],
+    ["Person 2", "01 Jan 2024"],
+    ["Person 3", "01 Jan 2024"],
+  ];
+
   return (
-    <Wrapper>
+    <Container>
       <Header text={"Joiners"} />
-    </Wrapper>
+      <YellowBox>
+        <Table headers={headers} rows={rows} />
+      </YellowBox>
+    </Container>
   );
 }
 
 export default Joiners;
 
-const Wrapper = styled.div`
+const Container = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
+  flex-direction: column;
   height: 100%;
-  position: relative; /* Allow the absolute positioning of Header */
+  width: 100%;
+`;
+
+const YellowBox = styled.div`
+  padding-left: 30px;
+  padding-right: 30px;
+  flex-grow: 1;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;

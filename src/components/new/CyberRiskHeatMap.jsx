@@ -4,19 +4,24 @@ import styled from "styled-components";
 
 function CyberRiskHeatMap() {
   return (
-    <Wrapper>
+    <Container>
       <Header text={"Cyber Risk Heat Map"} />
-    </Wrapper>
+      <YellowBox />
+    </Container>
   );
 }
 
 export default CyberRiskHeatMap;
 
-const Wrapper = styled.div`
+const Container = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  height: 100%; /* Take full viewport height */
   width: 100%;
-  height: 100%;
-  position: relative; /* Allow the absolute positioning of Header */
+`;
+
+const YellowBox = styled.div`
+  /* background-color: yellow; */
+  flex-grow: 1; /* Take remaining space */
+  width: 100%;
 `;
