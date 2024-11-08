@@ -58,6 +58,11 @@ const Td = styled.td`
   font-size: 1.2rem;
   text-align: left;
   border: none;
+
+  /* Add padding specifically for the second column */
+  &:nth-child(1) {
+    padding-right: 4rem; /* Adjust this value as needed */
+  }
 `;
 
 const Tbody = styled.tbody`

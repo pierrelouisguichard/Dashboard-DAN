@@ -3,7 +3,7 @@ import Title from "./new/Title";
 import LogButton from "./new/LogButton";
 import ExportPDF from "./new/ExportPDF";
 import OverallScore from "./new/OverallScore";
-import Spider from "./new/Spider";
+import VulnerabilityManagement from "./new/VulnerabilityManagement";
 import CyberEssentialsStatus from "./new/CyberEssentialsStatus";
 import CyberRiskHeatMap from "./new/CyberRiskHeatMap";
 import Joiners from "./new/Joiners";
@@ -20,13 +20,13 @@ const GridContainer = styled.div`
   grid-template-columns: repeat(8, 1fr);
   grid-auto-rows: 1fr;
   gap: 10px;
-  max-width: 2700px;
+  max-width: 2500px;
   width: auto;
   height: 100vh;
   padding: 10px;
-  aspect-ratio: 106 / 50;
+  aspect-ratio: 104 / 50;
 
-  @media (max-width: 2000px) {
+  @media (max-width: 1700px) {
     grid-template-columns: repeat(4, 1fr);
     aspect-ratio: 4 / 8;
     max-width: 1000px;
@@ -36,7 +36,7 @@ const GridContainer = styled.div`
 
   @media (max-width: 1000px) {
     grid-template-columns: repeat(2, 1fr);
-    aspect-ratio: 2 / 16;
+    aspect-ratio: 2 / 15;
     max-width: 500px;
     width: 100%;
     height: auto;
@@ -56,7 +56,7 @@ const Item = styled.div`
 `;
 
 const Navbar = styled(Item)`
-  @media (max-width: 2000px) {
+  @media (max-width: 1700px) {
     grid-column: span 3;
   }
   @media (max-width: 1000px) {
@@ -82,7 +82,7 @@ const GridLayout = () => (
     </Item>
 
     <Item colSpan={2} rowSpan={8}>
-      <Spider />
+      <VulnerabilityManagement />
     </Item>
     <Item colSpan={2} rowSpan={4}>
       <KeyDates />

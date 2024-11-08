@@ -13,7 +13,7 @@ function Leavers() {
 
   return (
     <Container>
-      <Header text={"Leavers"} />
+      <Header text={"text"} title={"Leavers"} />
       <YellowBox>
         <Table headers={headers} rows={rows} />
       </YellowBox>

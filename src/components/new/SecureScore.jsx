@@ -30,7 +30,7 @@ function SecureScore() {
     datasets: [
       {
         label: "Another Metric",
-        data: [46, 45, 46, 45, 45, 43, 44, 43, 42],
+        data: [42, 43, 42, 43, 44, 44, 45, 46, 45],
         fill: false,
         borderColor: "#186e98", // Line color
         tension: 0.4, // Smooth the line
@@ -69,12 +69,15 @@ function SecureScore() {
 
   return (
     <Container>
-      <Header text={"Secure Score"} />
+      <Header text={"text"} title={"Secure Score"} />
       <YellowBox>
         <Grid>
           <Box>
-            <LeftItem>42%</LeftItem>
-            <RightItem>-3%</RightItem>
+            <LeftItem>
+              46% <br />
+              <Other>Organizations of a similar size: 48%</Other>
+            </LeftItem>
+            <RightItem>+3%</RightItem>
           </Box>
           <FullSpanBox>
             <Line data={data} options={options} />
@@ -86,6 +89,11 @@ function SecureScore() {
 }
 
 export default SecureScore;
+
+const Other = styled.div`
+  font-size: 1rem;
+  color: #95bed2;
+`;
 
 const Container = styled.div`
   display: flex;
@@ -103,7 +111,7 @@ const LeftItem = styled.div`
 const RightItem = styled.div`
   font-size: 2rem;
   padding-top: 22px;
-  color: red;
+  color: #00d700;
 `;
 
 const YellowBox = styled.div`

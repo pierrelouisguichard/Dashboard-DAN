@@ -5,7 +5,7 @@ import styled from "styled-components";
 function CyberRiskHeatMap() {
   return (
     <Container>
-      <Header text={"Cyber Risk Heat Map"} />
+      <Header text={"text"} title={"Cyber Risk Heat Map"} />
       <YellowBox />
     </Container>
   );
@@ -21,7 +21,11 @@ const Container = styled.div`
 `;
 
 const YellowBox = styled.div`
-  /* background-color: yellow; */
-  flex-grow: 1; /* Take remaining space */
+  padding-left: 30px;
+  padding-right: 30px;
+  flex-grow: 1;
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;

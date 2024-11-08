@@ -6,11 +6,7 @@ import GaugeComponent from "react-gauge-component";
 function OverallScore() {
   return (
     <Container>
-      <Header text={"Overall Score"} />
-      {/* <CenteredDiv>
-        {" "}
-
-      </CenteredDiv> */}
+      <Header text={"text"} title={"Overall Score"} />
       <YellowBox>
         <div style={{ width: "90%" }}>
           <GaugeComponent
@@ -68,11 +64,11 @@ const StyledDiv = styled.div`
 `;
 
 const YellowBox = styled.div`
-  /* background-color: yellow; */
   flex-grow: 1;
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative; /* For positioning the info icon */
 `;

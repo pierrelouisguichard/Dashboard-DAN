@@ -13,7 +13,7 @@ function Joiners() {
 
   return (
     <Container>
-      <Header text={"Joiners"} />
+      <Header text={"text"} title={"Joiners"} />
       <YellowBox>
         <Table headers={headers} rows={rows} />
       </YellowBox>

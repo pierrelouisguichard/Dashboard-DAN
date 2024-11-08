@@ -13,7 +13,7 @@ function KeyDates() {
 
   return (
     <Container>
-      <Header text={"Key Dates"} />
+      <Header text={"text"} title={"Key Dates"} />
       <YellowBox>
         <Table headers={headers} rows={rows} />
       </YellowBox>
