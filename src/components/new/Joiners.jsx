@@ -9,6 +9,9 @@ function Joiners() {
     ["Person 1", "01 Jan 2024"],
     ["Person 2", "01 Jan 2024"],
     ["Person 3", "01 Jan 2024"],
+    ["Person 2", "01 Jan 2024"],
+    ["Person 3", "01 Jan 2024"],
+    ["Person 3", "01 Jan 2024"],
   ];
 
   return (

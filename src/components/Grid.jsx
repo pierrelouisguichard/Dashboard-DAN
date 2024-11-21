@@ -26,7 +26,7 @@ const GridContainer = styled.div`
   padding: 10px;
   aspect-ratio: 104 / 50;
 
-  @media (max-width: 1700px) {
+  @media (max-width: 1900px) {
     grid-template-columns: repeat(4, 1fr);
     aspect-ratio: 4 / 8;
     max-width: 1000px;
@@ -56,7 +56,7 @@ const Item = styled.div`
 `;
 
 const Navbar = styled(Item)`
-  @media (max-width: 1700px) {
+  @media (max-width: 1900px) {
     grid-column: span 3;
   }
   @media (max-width: 1000px) {

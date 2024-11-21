@@ -9,6 +9,8 @@ function KeyDates() {
     ["CSC Meeting #10", "01 Jan 2024"],
     ["CSC Meeting #11", "02 Jan 2024"],
     ["CSC Meeting #12", "03 Jan 2024"],
+    ["CSC Meeting #13", "04 Jan 2024"],
+    ["CSC Meeting #14", "05 Jan 2024"],
   ];
 
   return (

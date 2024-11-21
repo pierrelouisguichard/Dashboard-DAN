@@ -48,14 +48,14 @@ const Thead = styled.thead`
 
 const Th = styled.th`
   color: #95bed2;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   text-align: left;
   border: none;
 `;
 
 const Td = styled.td`
   color: #186e98;
-  font-size: 1.2rem;
+  font-size: 1rem;
   text-align: left;
   border: none;
 
@@ -68,5 +68,22 @@ const Td = styled.td`
 const Tbody = styled.tbody`
   tr:not(:last-child) {
     border-bottom: 2px solid #ecf5f9; /* Horizontal line between rows except the last */
+  }
+
+  tr:nth-of-type(n + 6) {
+    display: none;
+  }
+
+  /* Limit max rows to 3 on phones */
+
+  @media (max-width: 1900px) or (max-height: 1200px) {
+    tr:nth-of-type(n + 5) {
+      display: none;
+    }
+  }
+  @media (max-width: 1000px) or (max-height: 800px) {
+    tr:nth-of-type(n + 4) {
+      display: none;
+    }
   }
 `;
