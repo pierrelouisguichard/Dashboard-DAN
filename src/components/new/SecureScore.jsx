@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import styled from "styled-components";
 import { Line } from "react-chartjs-2";
@@ -12,6 +12,9 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import { loginRequest } from "../../authConfig";
+import { useMsal } from "@azure/msal-react";
+import { fetchSecureScoreData } from "../../graph";
 
 // Register chart.js components
 ChartJS.register(
@@ -25,6 +28,34 @@ ChartJS.register(
 );
 
 function SecureScore() {
+  const { instance, accounts } = useMsal();
+  const [secureScore, setSecureScore] = useState([]);
+
+  // Fetch Secure Score data
+  useEffect(() => {
+    const fetchData = async () => {
+      if (accounts.length > 0) {
+        try {
+          const response = await instance.acquireTokenSilent({
+            ...loginRequest,
+            account: accounts[0],
+          });
+          const data = await fetchSecureScoreData(response.accessToken);
+          setSecureScore(data.value || []);
+        } catch (error) {
+          console.error("Error fetching secure score data", error);
+        }
+      }
+    };
+
+    fetchData();
+  }, [accounts, instance]);
+
+  // Log changes to `secureScore`
+  useEffect(() => {
+    console.log("Secure Score:", secureScore);
+  }, [secureScore]);
+
   const data = {
     labels: ["Jan", "", "Mar", "", "May", "", "Jul", "", "Aug"],
     datasets: [
@@ -69,7 +100,7 @@ function SecureScore() {
 
   return (
     <Container>
-      <Header text={"text"} title={"Secure Score"} />
+      <Header text={"text"} title={"Microsoft Secure Score"} />
       <YellowBox>
         <Grid>
           <Box>

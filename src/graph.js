@@ -43,3 +43,30 @@ export async function fetchDeviceData(accessToken) {
     throw error;
   }
 }
+
+export async function fetchSecureScoreData(accessToken) {
+  const headers = new Headers();
+  const bearer = `Bearer ${accessToken}`;
+
+  headers.append("Authorization", bearer);
+
+  const options = {
+    method: "GET",
+    headers: headers,
+  };
+
+  const secureScoreEndpoint =
+    "https://graph.microsoft.com/v1.0/security/secureScores/";
+
+  try {
+    const response = await fetch(secureScoreEndpoint, options);
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching secure score:", error);
+    throw error;
+  }
+}
