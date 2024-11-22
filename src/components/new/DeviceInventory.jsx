@@ -1,13 +1,57 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import DeviceTable from "./DeviceTable"; // Import the new DeviceTable component
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
+import { useMsal } from "@azure/msal-react";
+import { loginRequest } from "../../authConfig";
+import { fetchDeviceData } from "../../graph";
+import DataTable from "../DataTable";
 
 function DeviceInventory() {
   const [selectedDeviceType, setSelectedDeviceType] = useState(null);
+  const { instance, accounts } = useMsal();
+  const [deviceData, setDeviceData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (accounts.length > 0) {
+        try {
+          const response = await instance.acquireTokenSilent({
+            ...loginRequest,
+            account: accounts[0],
+          });
+          const data = await fetchDeviceData(response.accessToken);
+          setDeviceData(data.value || []);
+        } catch (error) {
+          console.error("Error fetching device data", error);
+        }
+      }
+    };
+
+    fetchData();
+  }, [accounts, instance]);
+
+  const windowsData =
+    deviceData.length > 0
+      ? deviceData
+          .filter((device) => device.operatingSystem === "Windows")
+          .map((device) => [device.displayName, device.model])
+      : [];
+
+  const iPhoneData =
+    deviceData.length > 0
+      ? deviceData
+          .filter((device) => device.operatingSystem === "IPhone")
+          .map((device) => [device.displayName, device.model])
+      : [];
+
+  useEffect(() => {
+    console.log("--------------------");
+    console.log(windowsData);
+  }, [deviceData]);
 
   const handleButtonClick = (deviceType) => {
     setSelectedDeviceType(deviceType);
@@ -26,23 +70,20 @@ function DeviceInventory() {
             <BackButton onClick={handleBackClick}>
               <FontAwesomeIcon icon={faChevronLeft} /> Back
             </BackButton>
-            <DeviceTable deviceType={selectedDeviceType} />
+            <DataTable
+              label1="Computer's Name"
+              label2="Model"
+              data={
+                selectedDeviceType === "Computers" ? windowsData : iPhoneData
+              }
+            />
           </>
         ) : (
           <>
-            <Button onClick={() => handleButtonClick("Desktops")}>
+            <Button onClick={() => handleButtonClick("Computers")}>
               <TextContainer>
-                <Number>23</Number>
-                Desktops
-              </TextContainer>
-              <Chevron>
-                <FontAwesomeIcon icon={faChevronDown} />
-              </Chevron>
-            </Button>
-            <Button onClick={() => handleButtonClick("Laptops")}>
-              <TextContainer>
-                <Number>6</Number>
-                Laptops
+                <Number>{windowsData.length}</Number>
+                Computers
               </TextContainer>
               <Chevron>
                 <FontAwesomeIcon icon={faChevronDown} />
@@ -50,7 +91,7 @@ function DeviceInventory() {
             </Button>
             <Button onClick={() => handleButtonClick("Phones")}>
               <TextContainer>
-                <Number>16</Number>
+                <Number>{iPhoneData.length}</Number>
                 Phones
               </TextContainer>
               <Chevron>
