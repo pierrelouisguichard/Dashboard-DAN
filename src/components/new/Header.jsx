@@ -77,6 +77,7 @@ const Tooltip = styled.div`
   white-space: normal; /* Allow text to wrap */
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   z-index: 10;
-  width: 200px;
+  width: 300px;
   word-wrap: break-word; /* Ensure text wraps when it exceeds the max-width */
+  text-align: left; /* Align text to the left */
 `;

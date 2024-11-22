@@ -30,18 +30,33 @@ ChartJS.register(
 function SecureScore() {
   const { instance, accounts } = useMsal();
   const [secureScore, setSecureScore] = useState([]);
+  const [percentage, setPercentage] = useState(null); // State for storing the percentage
 
   // Fetch Secure Score data
   useEffect(() => {
     const fetchData = async () => {
       if (accounts.length > 0) {
         try {
+          // Acquire the access token silently
           const response = await instance.acquireTokenSilent({
             ...loginRequest,
             account: accounts[0],
           });
+
+          // Fetch secure score data using the access token
           const data = await fetchSecureScoreData(response.accessToken);
-          setSecureScore(data.value || []);
+          console.log("Fetched secure score data:", data); // Log the data
+          setSecureScore(data || []);
+
+          // Safely calculate percentage (same as before)
+          const secureScoreValue = data?.value || [];
+          const latestScore = secureScoreValue[0] || {};
+          const currentScore = latestScore.currentScore || 0;
+          const maxScore = latestScore.maxScore || 1; // Avoid division by zero
+          const scorePercentage = (currentScore / maxScore) * 100;
+
+          // Update percentage state
+          setPercentage(scorePercentage.toFixed(0)); // Update the percentage state
         } catch (error) {
           console.error("Error fetching secure score data", error);
         }
@@ -51,25 +66,62 @@ function SecureScore() {
     fetchData();
   }, [accounts, instance]);
 
-  // Log changes to `secureScore`
-  useEffect(() => {
-    console.log("Secure Score:", secureScore);
-  }, [secureScore]);
+  // Safely access values from secureScore
+  const secureScoreValue = secureScore?.value || [];
+  const latestScore = secureScoreValue[10] || {};
+  const currentScore = latestScore.currentScore || 0;
+  const maxScore = latestScore.maxScore || 1; // Avoid division by zero
+  const scorePercentage = (currentScore / maxScore) * 100;
 
   const data = {
-    labels: ["Jan", "", "Mar", "", "May", "", "Jul", "", "Aug"],
+    // Generate labels with 80, "", "", "", 40, "", "", "", 0
+    labels: Array.from({ length: 9 }, (_, index) => {
+      if (index === 0) {
+        const entry = secureScoreValue[80]; // First label at index 80
+        return entry?.createdDateTime
+          ? new Date(entry.createdDateTime).toLocaleString("en-US", {
+              month: "short",
+            })
+          : "80"; // Fallback to 80 if no date is available
+      } else if (index === 4) {
+        const entry = secureScoreValue[40]; // Label at index 40
+        return entry?.createdDateTime
+          ? new Date(entry.createdDateTime).toLocaleString("en-US", {
+              month: "short",
+            })
+          : "40"; // Fallback to 40 if no date is available
+      } else if (index === 8) {
+        const entry = secureScoreValue[0]; // Label at index 0
+        return entry?.createdDateTime
+          ? new Date(entry.createdDateTime).toLocaleString("en-US", {
+              month: "short",
+            })
+          : "0"; // Fallback to 0 if no date is available
+      } else {
+        return ""; // Empty label for other indices
+      }
+    }),
+
     datasets: [
       {
-        label: "Another Metric",
-        data: [42, 43, 42, 43, 44, 44, 45, 46, 45],
+        label: "Secure Score Over Time",
+        // Select data for the same intervals (indices 80, 70, ..., 0)
+        data: Array.from({ length: 9 }, (_, index) => {
+          const reverseIndex = 80 - index * 10; // Reverse the index order
+          const entry = secureScoreValue[reverseIndex]; // Access data in reverse
+          return entry && entry.currentScore && entry.maxScore
+            ? (entry.currentScore / entry.maxScore) * 100
+            : 0;
+        }),
         fill: false,
         borderColor: "#186e98", // Line color
-        tension: 0.4, // Smooth the line
+        tension: 0.3, // Smooth the line
         pointRadius: 0, // Remove the points (circles)
         borderWidth: 2, // Line thickness
       },
     ],
   };
+
   const options = {
     responsive: true,
     plugins: {
@@ -98,17 +150,52 @@ function SecureScore() {
     },
   };
 
+  // Calculate percentage change safely
+  const previousScore = secureScoreValue[80]?.currentScore || 0;
+  const percentageChange = (
+    scorePercentage - (previousScore / maxScore) * 100 || 0
+  ).toFixed(0);
+
   return (
     <Container>
-      <Header text={"text"} title={"Microsoft Secure Score"} />
+      <Header
+        text={
+          <>
+            <p>
+              Microsoft Secure Score helps track and improve security by
+              monitoring adherence to best practices in Microsoft 365.
+            </p>
+            <ul
+              style={{
+                padding: "0",
+                margin: "0",
+                listStylePosition: "inside",
+              }}
+            >
+              <li>Displays the current Secure Score.</li>
+              <li>
+                Includes a line chart showing changes over the past three
+                months.
+              </li>
+              <li>Compares score to similar-sized organizations.</li>
+              <li>Highlights score increases or decreases over time.</li>
+            </ul>
+          </>
+        }
+        title="Microsoft Secure Score"
+      />
       <YellowBox>
         <Grid>
           <Box>
             <LeftItem>
-              46% <br />
+              {percentage ? `${percentage}%` : "Loading..."} <br />
               <Other>Organizations of a similar size: 48%</Other>
             </LeftItem>
-            <RightItem>+3%</RightItem>
+            <RightItem percentageChange={percentageChange}>
+              {percentageChange >= 0
+                ? `+${percentageChange}%`
+                : `${percentageChange}%`}
+            </RightItem>
           </Box>
           <FullSpanBox>
             <Line data={data} options={options} />
@@ -142,7 +229,12 @@ const LeftItem = styled.div`
 const RightItem = styled.div`
   font-size: 2rem;
   padding-top: 22px;
-  color: #00d700;
+  color: ${({ percentageChange }) =>
+    percentageChange > 0
+      ? "#00d700" // Green if positive
+      : percentageChange < 0
+      ? "#ff0000" // Red if negative
+      : "#d6d6d6"}; // Grey if 0
 `;
 
 const YellowBox = styled.div`
