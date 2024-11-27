@@ -6,16 +6,18 @@ import styled from "styled-components";
 function KeyDates() {
   const headers = ["Event", "Date"];
   const rows = [
-    ["CSC Meeting #10", "01 Jan 2024"],
-    ["CSC Meeting #11", "02 Jan 2024"],
-    ["CSC Meeting #12", "03 Jan 2024"],
-    ["CSC Meeting #13", "04 Jan 2024"],
-    ["CSC Meeting #14", "05 Jan 2024"],
+    ["CSC Meeting", "09 Oct 2024"],
+    ["Cyber Essentials Renewal", "17 Sep 2024"],
+    ["Information Security Policy launch", "01 Nov 2024"],
+    ["Acceptable Use Policy launch", "01 Dec 2024"],
+    ["Security Awarness Plan", "01 Jan 2025"],
   ];
 
   return (
     <Container>
-      <Header text={"text"} title={"Key Dates"} />
+      <Header text={  <p>
+    The Key Dates component shows important dates relevant to the organization, such as renewal dates, deadlines, and other significant events.
+  </p>} title={"Key Dates"} />
       <YellowBox>
         <Table headers={headers} rows={rows} />
       </YellowBox>

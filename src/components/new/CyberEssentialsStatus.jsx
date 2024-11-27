@@ -7,7 +7,9 @@ import picture2 from "../../assets/cyber_essentials_plus.png";
 function CyberEssentialsStatus() {
   return (
     <Container>
-      <Header text={"text"} title={"Cyber Essentials Status"} />
+      <Header text={  <p>
+    The Cyber Essentials Status component shows the Cyber Essentials logo along with the expiration date of the certification.
+  </p>} title={"Cyber Essentials Status"} />
       <YellowBox>
         <ImagesWrapper>
           <StyledImage src={picture1} alt="Description of picture 1" />

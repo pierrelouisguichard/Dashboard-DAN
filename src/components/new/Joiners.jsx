@@ -6,17 +6,18 @@ import styled from "styled-components";
 function Joiners() {
   const headers = ["Name", "Date"];
   const rows = [
-    ["Person 1", "01 Jan 2024"],
-    ["Person 2", "01 Jan 2024"],
-    ["Person 3", "01 Jan 2024"],
-    ["Person 2", "01 Jan 2024"],
-    ["Person 3", "01 Jan 2024"],
-    ["Person 3", "01 Jan 2024"],
+    ["Aarman Murgai", "10 Oct 2024"],
+    ["Nicolas Goig", "01 Jul 2024"],
+    ["Lucrezia Rossini", "15 Apr 2024"],
+    ["Federico Colasanti", "28 Jun 2024"],
+    ["Marine Gaudin", "28 Jun 2024"],
   ];
 
   return (
     <Container>
-      <Header text={"text"} title={"Joiners"} />
+      <Header text={  <p>
+    The Joiners component shows the most recent employees who have joined the organization, along with the date they joined.
+  </p>} title={"Joiners"} />
       <YellowBox>
         <Table headers={headers} rows={rows} />
       </YellowBox>

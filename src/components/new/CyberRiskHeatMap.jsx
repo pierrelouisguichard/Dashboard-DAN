@@ -5,7 +5,7 @@ import styled from "styled-components";
 function CyberRiskHeatMap() {
   return (
     <Container>
-      <Header text={"text"} title={"Cyber Risk Heat Map"} />
+      <Header text={"?"} title={"Cyber Risk Heat Map"} />
       <YellowBox />
     </Container>
   );

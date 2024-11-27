@@ -151,7 +151,7 @@ function SecureScore() {
   };
 
   // Calculate percentage change safely
-  const previousScore = secureScoreValue[80]?.currentScore || 0;
+  const previousScore = secureScoreValue[40]?.currentScore || 0;
   const percentageChange = (
     scorePercentage - (previousScore / maxScore) * 100 || 0
   ).toFixed(0);

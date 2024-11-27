@@ -6,7 +6,24 @@ import GaugeComponent from "react-gauge-component";
 function OverallScore() {
   return (
     <Container>
-      <Header text={"text"} title={"Overall Score"} />
+      <Header text={<>
+  <p>
+    The Overall Score component provides a security score calculated from various factors, such as Microsoft Secure Score, encryption and antivirus coverage, phishing campaign results, and vulnerability management.
+  </p>
+  <ul
+    style={{
+      padding: "0",
+      margin: "0",
+      listStylePosition: "inside",
+    }}
+  >
+    <li>Shows a combined security score based on multiple security factors.</li>
+    <li>Includes metrics like encrypted devices, antivirus coverage, phishing results, and vulnerability management.</li>
+    <li>Offers a unified view of the organization’s overall security posture.</li>
+  </ul>
+</>
+
+} title={"Overall Score"} />
       <YellowBox>
         <div style={{ width: "90%" }}>
           <GaugeComponent
@@ -28,7 +45,7 @@ function OverallScore() {
               type: "blob",
               animationDelay: 0,
             }}
-            value={65}
+            value={85}
             labels={{
               valueLabel: {
                 style: {
@@ -41,7 +58,7 @@ function OverallScore() {
             }}
           />
         </div>
-        <StyledDiv>65%</StyledDiv>
+        <StyledDiv>85%</StyledDiv>
       </YellowBox>
     </Container>
   );
