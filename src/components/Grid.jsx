@@ -8,7 +8,7 @@ import CyberEssentialsStatus from "./new/CyberEssentialsStatus";
 import CyberRiskHeatMap from "./new/CyberRiskHeatMap";
 import Joiners from "./new/Joiners";
 import Leavers from "./new/Leavers";
-import PhishingCampaign from "./new/PhishinCampaign";
+import PhishingCampaign from "./new/PhishingCampaign";
 import DeviceInventory from "./new/DeviceInventory";
 import KeyDates from "./new/KeyDates";
 import SecureScore from "./new/SecureScore";
@@ -82,13 +82,13 @@ const GridLayout = () => (
     </Item>
 
     <Item colSpan={2} rowSpan={8}>
-      <VulnerabilityManagement />
-    </Item>
-    <Item colSpan={2} rowSpan={4}>
-      <KeyDates />
+      <SecureScore />
     </Item>
     <Item colSpan={2} rowSpan={4}>
       <CyberRiskHeatMap />
+    </Item>
+    <Item colSpan={2} rowSpan={4}>
+      <KeyDates />
     </Item>
     <Item colSpan={2} rowSpan={12}>
       <PhishingCampaign />
@@ -97,7 +97,7 @@ const GridLayout = () => (
       <Joiners />
     </Item>
     <Item colSpan={2} rowSpan={8}>
-      <SecureScore />
+      <VulnerabilityManagement />
     </Item>
     <Item colSpan={2} rowSpan={8}>
       <DeviceInventory />

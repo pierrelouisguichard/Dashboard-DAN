@@ -116,7 +116,7 @@ class ApexChart extends React.Component {
   }
 }
 
-function PhishinCampaign() {
+function PhishingCampaign() {
   const headers = ["Name", "Click-Prone %"];
   const rows = [
     ["Person 1", "22"],
@@ -128,7 +128,7 @@ function PhishinCampaign() {
 
   return (
     <Container>
-      <Header text={"text"} title={"Phishin Campaign"} />
+      <Header text={"text"} title={"Phishing Campaigns"} />
       <YellowBox>
         <Title>Click Prone</Title>
         <BoxTwoThirds>
@@ -143,7 +143,7 @@ function PhishinCampaign() {
   );
 }
 
-export default PhishinCampaign;
+export default PhishingCampaign;
 
 const Container = styled.div`
   display: flex;
