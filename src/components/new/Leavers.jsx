@@ -6,21 +6,26 @@ import styled from "styled-components";
 function Leavers() {
   const headers = ["Name", "Date"];
   const rows = [
+    ["Aarman Murgai", "21 Dec 2024"],
+    ["Lucrezia Rossini", "21 Dec 2024"],
     ["Federico Rotolo", "20 Nov 2024"],
     ["Nicolas Goig", "08 Nov 2024"],
     ["Gennaro Bertolino ", "07 Nov 2024"],
-    ["Diego Hernandez Jaurena", "01 Jan 2024"],
-    ["Imrane Djehanne", "01 Jan 2024"],
   ];
 
   return (
     <Container>
-      <Header text={<>
-  <p>
-    The Leavers component shows the most recent employees who have left the organisation, along with the date they left.
-  </p>
-</>
-} title={"Leavers"} />
+      <Header
+        text={
+          <>
+            <p>
+              The Leavers component shows the most recent employees who have
+              left the organisation, along with the date they left.
+            </p>
+          </>
+        }
+        title={"Leavers"}
+      />
       <YellowBox>
         <Table headers={headers} rows={rows} />
       </YellowBox>

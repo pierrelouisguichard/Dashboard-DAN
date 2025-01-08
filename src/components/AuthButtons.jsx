@@ -12,6 +12,25 @@ const StyledButton = styled.button`
   height: 100%;
 `;
 
+const StyledButton2 = styled.button`
+  background-color: white;
+  border-radius: 5px;
+  border: none;
+  color: black;
+  width: 200px;
+  height: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #f0f0f0;
+  }
+
+  &:focus {
+    outline: 2px solid #000;
+  }
+`;
+
 // SignOutButton component
 export const SignOutButton = () => {
   const { instance } = useMsal();
@@ -35,5 +54,5 @@ export const SignInButton = () => {
     });
   };
 
-  return <StyledButton onClick={handleLogin}>Login</StyledButton>;
+  return <StyledButton2 onClick={handleLogin}>Go To Dashboard</StyledButton2>;
 };

@@ -13,14 +13,17 @@ import DeviceInventory from "./new/DeviceInventory";
 import KeyDates from "./new/KeyDates";
 import SecureScore from "./new/SecureScore";
 
-const GridContainer = styled.div`
+const Background = styled.div`
   background-color: #f0f0f0;
+`;
+
+const GridContainer = styled.div`
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(8, 1fr);
   grid-auto-rows: 1fr;
   gap: 10px;
-  max-width: 2500px;
+  max-width: 2200px;
   width: auto;
   height: 100vh;
   padding: 10px;
@@ -66,51 +69,53 @@ const Navbar = styled(Item)`
 `;
 
 const GridLayout = () => (
-  <GridContainer>
-    <Navbar colSpan={7} rowSpan={2}>
-      <Title />
-    </Navbar>
+  <Background>
+    <GridContainer>
+      <Navbar colSpan={7} rowSpan={2}>
+        <Title />
+      </Navbar>
 
-    <Item colSpan={1} rowSpan={1}>
-      <LogButton />
-    </Item>
-    <Item colSpan={1} rowSpan={1}>
-      <ExportPDF />
-    </Item>
-    <Item colSpan={2} rowSpan={8}>
-      <OverallScore />
-    </Item>
+      <Item colSpan={1} rowSpan={1}>
+        <LogButton />
+      </Item>
+      <Item colSpan={1} rowSpan={1}>
+        <ExportPDF />
+      </Item>
+      <Item colSpan={2} rowSpan={8}>
+        <OverallScore />
+      </Item>
 
-    <Item colSpan={2} rowSpan={8}>
-      <SecureScore />
-    </Item>
-    <Item colSpan={2} rowSpan={8}>
-      <CyberRiskHeatMap />
-    </Item>
+      <Item colSpan={2} rowSpan={8}>
+        <SecureScore />
+      </Item>
+      <Item colSpan={2} rowSpan={8}>
+        <CyberRiskHeatMap />
+      </Item>
 
-    <Item colSpan={2} rowSpan={4}>
-      <Joiners />
-    </Item>
-    <Item colSpan={2} rowSpan={4}>
-      <Leavers />
-    </Item>
-    <Item colSpan={2} rowSpan={8}>
-      <PhishingCampaign />
-    </Item>
+      <Item colSpan={2} rowSpan={4}>
+        <Joiners />
+      </Item>
+      <Item colSpan={2} rowSpan={4}>
+        <Leavers />
+      </Item>
+      <Item colSpan={2} rowSpan={8}>
+        <PhishingCampaign />
+      </Item>
 
-    <Item colSpan={2} rowSpan={8}>
-      <VulnerabilityManagement />
-    </Item>
-    <Item colSpan={2} rowSpan={8}>
-      <DeviceInventory />
-    </Item>
-    <Item colSpan={2} rowSpan={4}>
-      <KeyDates />
-    </Item>
-    <Item colSpan={2} rowSpan={4}>
-      <CyberEssentialsStatus />
-    </Item>
-  </GridContainer>
+      <Item colSpan={2} rowSpan={8}>
+        <VulnerabilityManagement />
+      </Item>
+      <Item colSpan={2} rowSpan={8}>
+        <DeviceInventory />
+      </Item>
+      <Item colSpan={2} rowSpan={4}>
+        <KeyDates />
+      </Item>
+      <Item colSpan={2} rowSpan={4}>
+        <CyberEssentialsStatus />
+      </Item>
+    </GridContainer>
+  </Background>
 );
 
 export default GridLayout;

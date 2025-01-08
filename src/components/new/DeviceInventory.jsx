@@ -34,22 +34,23 @@ function DeviceInventory() {
     fetchData();
   }, [accounts, instance]);
 
-  const { desktops, laptops } = deviceData.length > 0
-  ? deviceData
-      .filter((device) => device.operatingSystem === "Windows") // Filter Windows devices
-      .filter((device) => device.displayName.startsWith("LOW")) // Keep only those starting with "LOW"
-      .reduce(
-        (result, device) => {
-          if (device.displayName[5] === "D") {
-            result.desktops.push([device.displayName, device.model]); // Add to desktops
-          } else if (device.displayName[5] === "L") {
-            result.laptops.push([device.displayName, device.model]); // Add to laptops
-          }
-          return result;
-        },
-        { desktops: [], laptops: [] } // Initial object
-      )
-  : { desktops: [], laptops: [] }; // Default empty arrays if no data
+  const { desktops, laptops } =
+    deviceData.length > 0
+      ? deviceData
+          .filter((device) => device.operatingSystem === "Windows") // Filter Windows devices
+          .filter((device) => device.displayName.startsWith("LOW")) // Keep only those starting with "LOW"
+          .reduce(
+            (result, device) => {
+              if (device.displayName[5] === "D") {
+                result.desktops.push([device.displayName, device.model]); // Add to desktops
+              } else if (device.displayName[5] === "L") {
+                result.laptops.push([device.displayName, device.model]); // Add to laptops
+              }
+              return result;
+            },
+            { desktops: [], laptops: [] } // Initial object
+          )
+      : { desktops: [], laptops: [] }; // Default empty arrays if no data
 
   const iPhoneData =
     deviceData.length > 0
@@ -68,24 +69,28 @@ function DeviceInventory() {
 
   return (
     <Container>
-      <Header text={
-        <>
-  <p>
-    This component shows the total count of desktops, laptops, and phones. Displays percentages for encryption and antivirus coverage. Clicking on any category reveals additional details, including:
-  </p>
-  <ul
-    style={{
-      padding: "0",
-      margin: "0",
-      listStylePosition: "inside",
-    }}
-  >
-    <li>Shows a detailed list of each device's name and model.</li>
-  </ul>
-</>
-      }
-
- title={"Device Inventory"} />
+      <Header
+        text={
+          <>
+            <p>
+              This component shows the total count of desktops, laptops, and
+              phones. Displays percentages for encryption and antivirus
+              coverage. Clicking on any category reveals additional details,
+              including:
+            </p>
+            <ul
+              style={{
+                padding: "0",
+                margin: "0",
+                listStylePosition: "inside",
+              }}
+            >
+              <li>Shows a detailed list of each device's name and model.</li>
+            </ul>
+          </>
+        }
+        title={"Device Inventory"}
+      />
       <YellowBox>
         {selectedDeviceType ? (
           <>
@@ -104,7 +109,6 @@ function DeviceInventory() {
                   ? iPhoneData
                   : [] // Default to an empty array if no match
               }
-              
             />
           </>
         ) : (
@@ -115,8 +119,8 @@ function DeviceInventory() {
                 Desktops
               </TextContainer>
               {/* <StyledDiv> */}
-                <StyledParagraph>100% Encrypted</StyledParagraph>
-                <StyledParagraph>100% Antivirus</StyledParagraph>
+              <StyledParagraph>100% Encrypted</StyledParagraph>
+              <StyledParagraph>100% Antivirus</StyledParagraph>
               {/* </StyledDiv> */}
               <Chevron>
                 <FontAwesomeIcon icon={faChevronDown} />
@@ -128,8 +132,8 @@ function DeviceInventory() {
                 Laptops
               </TextContainer>
               {/* <StyledDiv> */}
-                <StyledParagraph>100% Encrypted</StyledParagraph>
-                <StyledParagraph>100% Antivirus</StyledParagraph>
+              <StyledParagraph>100% Encrypted</StyledParagraph>
+              <StyledParagraph>100% Antivirus</StyledParagraph>
               {/* </StyledDiv> */}
               <Chevron>
                 <FontAwesomeIcon icon={faChevronDown} />
@@ -164,7 +168,6 @@ const StyledParagraph = styled.p`
 // padding-top: 55px;
 // padding-right: 30px;
 // `;
-
 
 const Container = styled.div`
   display: flex;
