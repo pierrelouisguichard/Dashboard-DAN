@@ -69,9 +69,12 @@ const TableContainer = styled.div`
   padding-left: 20px;
   padding-right: 20px;
   text-align: left;
-  max-height: 300px; /* Set a max-height for the table container */
-  overflow-y: auto; /* Enable vertical scrolling if content overflows */
+  max-height: 300px; /* Limit the height of the container */
+  overflow-y: auto; /* Enable vertical scrolling for the container */
   width: 100%; /* Full width */
+  border: 1px solid #ddd; /* Optional: Add a border to visually constrain the table */
+  border-radius: 5px; /* Optional: Rounded corners for aesthetics */
+  background-color: #fff; /* Ensure a consistent background color */
 `;
 
 const Table = styled.table`
