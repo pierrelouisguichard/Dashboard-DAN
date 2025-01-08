@@ -6,9 +6,11 @@ import {
 } from "@azure/msal-react";
 import GridLayout from "./components/Grid";
 import styled from "styled-components";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Agreement from "./components/new/Agreement";
 
 /**
- * If a user is authenticated the ProfileContent component above is rendered. Otherwise a message indicating a user is not authenticated is rendered.
+ * If a user is authenticated, the GridLayout component is rendered. Otherwise, a sign-in prompt is displayed.
  */
 const MainContent = () => {
   return (
@@ -29,9 +31,12 @@ const MainContent = () => {
 
 export default function App() {
   return (
-    <>
-      <MainContent />
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={<MainContent />} />
+        <Route path="/agreement" element={<Agreement />} />
+      </Routes>
+    </Router>
   );
 }
 

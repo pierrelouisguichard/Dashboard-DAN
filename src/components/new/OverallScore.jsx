@@ -2,6 +2,7 @@ import React from "react";
 import Header from "./Header";
 import styled from "styled-components";
 import GaugeComponent from "react-gauge-component";
+import SecureScore from "./SecureScore";
 
 function OverallScore() {
   return (

@@ -84,18 +84,20 @@ const GridLayout = () => (
     <Item colSpan={2} rowSpan={8}>
       <SecureScore />
     </Item>
-    <Item colSpan={2} rowSpan={4}>
+    <Item colSpan={2} rowSpan={8}>
       <CyberRiskHeatMap />
     </Item>
-    <Item colSpan={2} rowSpan={4}>
-      <KeyDates />
-    </Item>
-    <Item colSpan={2} rowSpan={12}>
-      <PhishingCampaign />
-    </Item>
+
     <Item colSpan={2} rowSpan={4}>
       <Joiners />
     </Item>
+    <Item colSpan={2} rowSpan={4}>
+      <Leavers />
+    </Item>
+    <Item colSpan={2} rowSpan={8}>
+      <PhishingCampaign />
+    </Item>
+
     <Item colSpan={2} rowSpan={8}>
       <VulnerabilityManagement />
     </Item>
@@ -103,7 +105,7 @@ const GridLayout = () => (
       <DeviceInventory />
     </Item>
     <Item colSpan={2} rowSpan={4}>
-      <Leavers />
+      <KeyDates />
     </Item>
     <Item colSpan={2} rowSpan={4}>
       <CyberEssentialsStatus />

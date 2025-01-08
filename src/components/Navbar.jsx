@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useIsAuthenticated } from "@azure/msal-react";
 import { SignInButton, SignOutButton } from "./AuthButtons";
+import logo from "../assets/logo.png"; // Import the logo
 
 export const PageLayout = () => {
   const isAuthenticated = useIsAuthenticated();
@@ -9,7 +10,10 @@ export const PageLayout = () => {
   return (
     <Container>
       <NavbarContainer>
-        <NavbarBrand href="/">d'Angelin Cyber Security Dashboard</NavbarBrand>
+        <NavbarBrand href="/">
+          <Logo src={logo} alt="Logo" />
+          d'Angelin Cyber Security Dashboardd
+        </NavbarBrand>
         <NavbarRight>
           {isAuthenticated ? <SignOutButton /> : <SignInButton />}
         </NavbarRight>
@@ -33,10 +37,18 @@ const NavbarBrand = styled.a`
   text-decoration: none;
   font-size: 3rem;
   font-weight: bold;
+  display: flex;
+  align-items: center; // Align logo and text vertically
+  gap: 1rem; // Add space between logo and text
   &:hover {
     color: white;
     text-decoration: none;
   }
+`;
+
+const Logo = styled.img`
+  width: 50px; // Adjust the size of the logo
+  height: 50px;
 `;
 
 const NavbarRight = styled.div`

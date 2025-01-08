@@ -122,8 +122,6 @@ function PhishingCampaign() {
     ["Person 1", "22"],
     ["Person 2", "19"],
     ["Person 3", "15"],
-    ["Person 2", "19"],
-    ["Person 3", "15"],
   ];
 
   return (
@@ -169,7 +167,7 @@ const BoxTwoThirds = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-bottom: 20px;
+  /* padding-bottom: 20px; */
 `;
 
 const Title = styled.div`
