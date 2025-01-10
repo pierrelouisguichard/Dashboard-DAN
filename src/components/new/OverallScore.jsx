@@ -111,7 +111,7 @@ const Gauge = styled.div`
 const Box = styled.div`
   width: 100%;
   height: 100%;
-  background-color: purple;
+  /* background-color: purple; */
 `;
 
 const YellowBox = styled.div`

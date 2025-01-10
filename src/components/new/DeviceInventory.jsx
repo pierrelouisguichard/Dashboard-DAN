@@ -43,28 +43,39 @@ function DeviceInventory() {
             </ul>
           </>
         }
-        title={"Device Inventory"}
+        title={"d'Angelin Estate"}
       />
-      <Tabs>
-        <Tab
-          onClick={() => setActiveTab("Devices")}
-          active={activeTab === "Devices"}
-        >
-          Devices
-        </Tab>
-        <Tab
-          onClick={() => setActiveTab("Softwares")}
-          active={activeTab === "Softwares"}
-        >
-          Softwares
-        </Tab>
-        <Tab
-          onClick={() => setActiveTab("Users")}
-          active={activeTab === "Users"}
-        >
-          Users
-        </Tab>
-      </Tabs>
+      <Centre>
+        <RadioInputs>
+          <Radio>
+            <input
+              type="radio"
+              name="tab2"
+              checked={activeTab === "Devices"}
+              onChange={() => setActiveTab("Devices")}
+            />
+            <span className="name2">Devices</span>
+          </Radio>
+          <Radio>
+            <input
+              type="radio"
+              name="tab2"
+              checked={activeTab === "Softwares"}
+              onChange={() => setActiveTab("Softwares")}
+            />
+            <span className="name2">Softwares</span>
+          </Radio>
+          <Radio>
+            <input
+              type="radio"
+              name="tab2"
+              checked={activeTab === "Users"}
+              onChange={() => setActiveTab("Users")}
+            />
+            <span className="name2">Users</span>
+          </Radio>
+        </RadioInputs>
+      </Centre>
       <Content>{renderContent()}</Content>
     </Container>
   );
@@ -79,28 +90,50 @@ const Container = styled.div`
   width: 100%;
 `;
 
-const Tabs = styled.div`
-  padding-top: 5px;
+const Centre = styled.div`
+  padding-top: 10px;
   display: flex;
+  align-items: center;
   justify-content: center;
 `;
 
-const Tab = styled.button`
-  background-color: ${(props) => (props.active ? "white" : "transparent")};
-  color: ${(props) => (props.active ? "#186e98" : "#555")};
-  border: ${(props) =>
-    props.active ? "1px solid #ddd" : "1px solid transparent"};
-  border-bottom: ${(props) => (props.active ? "none" : "1px solid #ddd")};
-  padding: 5px 15px;
+const RadioInputs = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.5rem;
+  background-color: #fff;
+  box-sizing: border-box;
+  box-shadow: 0 0 0px 1px #ecf5f9;
+  padding: 0.25rem;
+  width: 300px;
   font-size: 14px;
-  cursor: pointer;
-  font-weight: bold;
-  margin: 0;
-  border-radius: 5px 5px 0 0;
-  transition: all 0.3s ease-in-out;
+`;
 
-  &:hover {
-    background-color: ${(props) => (props.active ? "white" : "#e9e9e9")};
+const Radio = styled.label`
+  flex: 1 1 auto;
+  text-align: center;
+
+  input {
+    display: none;
+  }
+
+  .name2 {
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+    border: none;
+    padding: 0.2rem 0;
+    color: #186e98;
+    transition: all 0.15s ease-in-out;
+  }
+
+  input:checked + .name2 {
+    background-color: #ecf5f9;
+    font-weight: 600;
   }
 `;
 

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import Title from "./new/Title";
 import LogButton from "./new/LogButton";
 import ExportPDF from "./new/ExportPDF";
@@ -15,6 +15,17 @@ import SecureScore from "./new/SecureScore";
 
 const Background = styled.div`
   background-color: #f0f0f0;
+`;
+
+const fadeIn = keyframes`
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 `;
 
 const GridContainer = styled.div`
@@ -56,6 +67,14 @@ const Item = styled.div`
 
   grid-column: span ${(props) => props.colSpan || 1};
   grid-row: span ${(props) => props.rowSpan || 1};
+
+  /* Apply the animation */
+  animation: ${fadeIn} 0.5s ease-out forwards;
+  opacity: 0;
+  transform: translateY(20px);
+
+  /* Stagger delay based on index */
+  animation-delay: ${(props) => props.delay || 0}s;
 `;
 
 const Navbar = styled(Item)`
@@ -71,47 +90,47 @@ const Navbar = styled(Item)`
 const GridLayout = () => (
   <Background>
     <GridContainer>
-      <Navbar colSpan={7} rowSpan={2}>
+      <Navbar colSpan={7} rowSpan={2} delay={0}>
         <Title />
       </Navbar>
 
-      <Item colSpan={1} rowSpan={1}>
+      <Item colSpan={1} rowSpan={1} delay={0.2}>
         <LogButton />
       </Item>
-      <Item colSpan={1} rowSpan={1}>
+      <Item colSpan={1} rowSpan={1} delay={0.4}>
         <ExportPDF />
       </Item>
-      <Item colSpan={2} rowSpan={8}>
+      <Item colSpan={2} rowSpan={8} delay={0.6}>
         <OverallScore />
       </Item>
 
-      <Item colSpan={2} rowSpan={8}>
+      <Item colSpan={2} rowSpan={8} delay={0.8}>
         <SecureScore />
       </Item>
-      <Item colSpan={2} rowSpan={8}>
+      <Item colSpan={2} rowSpan={8} delay={1.0}>
         <CyberRiskHeatMap />
       </Item>
 
-      <Item colSpan={2} rowSpan={4}>
+      <Item colSpan={2} rowSpan={4} delay={1.2}>
         <Joiners />
       </Item>
-      <Item colSpan={2} rowSpan={4}>
+      <Item colSpan={2} rowSpan={4} delay={1.4}>
         <Leavers />
       </Item>
-      <Item colSpan={2} rowSpan={8}>
+      <Item colSpan={2} rowSpan={8} delay={1.6}>
         <PhishingCampaign />
       </Item>
 
-      <Item colSpan={2} rowSpan={8}>
+      <Item colSpan={2} rowSpan={8} delay={1.8}>
         <VulnerabilityManagement />
       </Item>
-      <Item colSpan={2} rowSpan={8}>
+      <Item colSpan={2} rowSpan={8} delay={2.0}>
         <DeviceInventory />
       </Item>
-      <Item colSpan={2} rowSpan={4}>
+      <Item colSpan={2} rowSpan={4} delay={2.2}>
         <KeyDates />
       </Item>
-      <Item colSpan={2} rowSpan={4}>
+      <Item colSpan={2} rowSpan={4} delay={2.4}>
         <CyberEssentialsStatus />
       </Item>
     </GridContainer>
