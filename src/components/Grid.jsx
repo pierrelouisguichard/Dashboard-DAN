@@ -12,6 +12,7 @@ import PhishingCampaign from "./new/PhishingCampaign";
 import DeviceInventory from "./new/DeviceInventory";
 import KeyDates from "./new/KeyDates";
 import SecureScore from "./new/SecureScore";
+import CyberMaturity from "./new/CyberMaturity";
 
 const Background = styled.div`
   background-color: #f0f0f0;
@@ -105,7 +106,7 @@ const GridLayout = () => (
       </Item>
 
       <Item colSpan={2} rowSpan={8} delay={0.8}>
-        <SecureScore />
+        <CyberMaturity />
       </Item>
       <Item colSpan={2} rowSpan={8} delay={1.0}>
         <CyberRiskHeatMap />

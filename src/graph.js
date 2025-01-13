@@ -37,10 +37,12 @@ export async function fetchDeviceData(accessToken) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
     const data = await response.json();
-    return data;
+
+    // Return data.value to get the list of devices
+    return data.value || []; // Ensure we return an empty array if no data is available
   } catch (error) {
     console.error("Error fetching devices:", error);
-    throw error;
+    throw error; // Re-throw the error to propagate it
   }
 }
 

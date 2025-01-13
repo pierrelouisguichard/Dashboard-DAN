@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom"; // Import Link for navigation
 import logo from "../../assets/logo.png"; // Import the logo
 
 const Wrapper = styled.div`
@@ -24,17 +25,17 @@ const Wrapper = styled.div`
   }
 `;
 
-const Logo = styled.img`
+const LogoLink = styled(Link)`
   position: absolute;
   left: 10px; /* Adjust as needed to set the distance from the left edge */
+  display: inline-block; /* Ensure the link doesn't disrupt layout */
+`;
+
+const Logo = styled.img`
   width: 300px; /* Default logo size */
   height: auto; /* Maintain aspect ratio */
-
   @media (max-width: 2000px) {
-    width: 200px; /* Adjust logo size for tablets and smaller devices */
-  }
-  @media (max-width: 1000px) {
-    position: relative;
+    width: 250px; /* Adjust logo size for tablets and smaller devices */
   }
 `;
 
@@ -45,7 +46,9 @@ const TitleText = styled.div`
 function Title() {
   return (
     <Wrapper>
-      <Logo src={logo} alt="Logo" />
+      <LogoLink to="/agreement">
+        <Logo src={logo} alt="Logo" />
+      </LogoLink>
       <TitleText>d’Angelin Cyber Security Dashboard</TitleText>
     </Wrapper>
   );

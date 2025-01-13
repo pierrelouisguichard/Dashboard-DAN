@@ -5,6 +5,15 @@ import GaugeComponent from "react-gauge-component";
 import SecureScore from "./SecureScore";
 
 function OverallScore() {
+  const data = [
+    { value: "67%", label: "Secure Score" },
+    { value: "57%", label: "EVS" },
+    { value: "95%", label: "IVS" },
+    { value: "74%", label: "Encryption" },
+    { value: "83%", label: "Antivirus" },
+    { value: "88%", label: "Patching" },
+  ];
+
   return (
     <Container>
       <Header
@@ -76,15 +85,46 @@ function OverallScore() {
         </Gauge>
         <StyledDiv>85%</StyledDiv>
       </YellowBox>
-      <Box></Box>
+      <Box>
+        {data.map((item, index) => (
+          <GridItem key={index}>
+            <div>{item.value}</div>
+            <Label>{item.label}</Label>
+          </GridItem>
+        ))}
+      </Box>
     </Container>
   );
 }
 
 export default OverallScore;
 
+const Box = styled.div`
+  padding: 0 20px 10px 20px;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columns */
+  grid-template-rows: repeat(2, 1fr); /* 2 rows */
+`;
+
+const GridItem = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: black;
+`;
+
+const Label = styled.div`
+  font-size: 1rem;
+  font-weight: normal;
+  color: #333;
+`;
+
 const Container = styled.div`
-  /* background-color: green; */
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -92,7 +132,6 @@ const Container = styled.div`
 `;
 
 const StyledDiv = styled.div`
-  /* background-color: yellow; */
   font-size: 4rem;
   font-weight: bold;
   color: #186e98;
@@ -105,17 +144,9 @@ const StyledDiv = styled.div`
 
 const Gauge = styled.div`
   width: 100%;
-  /* background-color: purple; */
-`;
-
-const Box = styled.div`
-  width: 100%;
-  height: 100%;
-  /* background-color: purple; */
 `;
 
 const YellowBox = styled.div`
-  /* background-color: blue; */
   flex-grow: 1;
   width: 100%;
   display: flex;

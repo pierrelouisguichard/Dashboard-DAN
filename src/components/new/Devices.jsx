@@ -13,24 +13,24 @@ function Devices() {
   const { instance, accounts } = useMsal();
   const [deviceData, setDeviceData] = useState([]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      if (accounts.length > 0) {
-        try {
-          const response = await instance.acquireTokenSilent({
-            ...loginRequest,
-            account: accounts[0],
-          });
-          const data = await fetchDeviceData(response.accessToken);
-          setDeviceData(data.value || []);
-        } catch (error) {
-          console.error("Error fetching device data", error);
-        }
-      }
-    };
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     if (accounts.length > 0) {
+  //       try {
+  //         const response = await instance.acquireTokenSilent({
+  //           ...loginRequest,
+  //           account: accounts[0],
+  //         });
+  //         const data = await fetchDeviceData(response.accessToken);
+  //         setDeviceData(data.value || []);
+  //       } catch (error) {
+  //         console.error("Error fetching device data", error);
+  //       }
+  //     }
+  //   };
 
-    fetchData();
-  }, [accounts, instance]);
+  //   fetchData();
+  // }, [accounts, instance]);
 
   const { desktops, laptops } =
     deviceData.length > 0
@@ -40,9 +40,9 @@ function Devices() {
           .reduce(
             (result, device) => {
               if (device.displayName[5] === "D") {
-                result.desktops.push([device.displayName, device.model]); // Add to desktops
+                // Add to desktops
               } else if (device.displayName[5] === "L") {
-                result.laptops.push([device.displayName, device.model]); // Add to laptops
+                // Add to laptops
               }
               return result;
             },
