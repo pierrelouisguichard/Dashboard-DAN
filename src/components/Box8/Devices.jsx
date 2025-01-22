@@ -3,10 +3,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
-import DataTable from "../DataTable";
+import DataTable from "./DataTable";
 import { useMsal } from "@azure/msal-react";
-import { loginRequest } from "../../authConfig";
-import { fetchDeviceData } from "../../graph";
+import { loginRequest } from "../../API/authConfig";
+import { fetchDeviceData } from "../../API/graph";
 
 function Devices() {
   const [selectedDeviceType, setSelectedDeviceType] = useState(null);

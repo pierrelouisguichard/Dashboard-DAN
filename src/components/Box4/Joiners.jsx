@@ -1,7 +1,9 @@
 import React from "react";
-import Header from "./Header";
-import Table from "./Table";
+import Header from "../other/Header";
+import Table from "../Box8/Table";
 import styled from "styled-components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
 
 function Joiners() {
   const headers = ["Name", "Date"];
@@ -15,9 +17,16 @@ function Joiners() {
 
   return (
     <Container>
-      <Header text={  <p>
-    The Joiners component shows the most recent employees who have joined the organization, along with the date they joined.
-  </p>} title={"Joiners"} />
+      <Header
+        text={
+          <p>
+            The Joiners component shows the most recent employees who have
+            joined the organization, along with the date they joined.
+          </p>
+        }
+        title={"Joiners"}
+        icon={<FontAwesomeIcon icon={faUserPlus} />}
+      />
       <YellowBox>
         <Table headers={headers} rows={rows} />
       </YellowBox>

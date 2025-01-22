@@ -1,18 +1,18 @@
 import styled, { keyframes } from "styled-components";
-import Title from "./new/Title";
-import LogButton from "./new/LogButton";
-import ExportPDF from "./new/ExportPDF";
-import OverallScore from "./new/OverallScore";
-import VulnerabilityManagement from "./new/VulnerabilityManagement";
-import CyberEssentialsStatus from "./new/CyberEssentialsStatus";
-import CyberRiskHeatMap from "./new/CyberRiskHeatMap";
-import Joiners from "./new/Joiners";
-import Leavers from "./new/Leavers";
-import PhishingCampaign from "./new/PhishingCampaign";
-import DeviceInventory from "./new/DeviceInventory";
-import KeyDates from "./new/KeyDates";
-import SecureScore from "./new/SecureScore";
-import CyberMaturity from "./new/CyberMaturity";
+import Title from "./other/Title";
+import LogButton from "./other/LogButton";
+import ExportPDF from "./other/ExportPDF";
+import OverallScore from "./Box1/OverallScore";
+import VulnerabilityManagement from "./Box7/VulnerabilityManagement";
+import CyberEssentialsStatus from "./Box10/CyberEssentialsStatus";
+import CyberRiskHeatMap from "./Box3/CyberRiskHeatMap";
+import Joiners from "./Box4/Joiners";
+import Leavers from "./Box5/Leavers";
+import PhishingCampaign from "./Box6/PhishingCampaign";
+import DeviceInventory from "./Box8/DeviceInventory";
+import KeyDates from "./Box9/KeyDates";
+import SecureScore from "./Box1/SecureScore";
+import CyberMaturity from "./Box2/CyberMaturity";
 
 const Background = styled.div`
   background-color: #f0f0f0;

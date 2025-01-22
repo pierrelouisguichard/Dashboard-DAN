@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import App from "./App";
 import { PublicClientApplication } from "@azure/msal-browser";
 import { MsalProvider } from "@azure/msal-react";
-import { msalConfig } from "./authConfig";
+import { msalConfig } from "./API/authConfig";
 
 /**
  * Initialize a PublicClientApplication instance which is provided to the MsalProvider component

@@ -1,7 +1,9 @@
 import React from "react";
-import Header from "./Header";
-import Table from "./Table";
+import Header from "../other/Header";
+import Table from "../Box8/Table";
 import styled from "styled-components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUserMinus } from "@fortawesome/free-solid-svg-icons";
 
 function Leavers() {
   const headers = ["Name", "Date"];
@@ -25,6 +27,7 @@ function Leavers() {
           </>
         }
         title={"Leavers"}
+        icon={<FontAwesomeIcon icon={faUserMinus} />}
       />
       <YellowBox>
         <Table headers={headers} rows={rows} />

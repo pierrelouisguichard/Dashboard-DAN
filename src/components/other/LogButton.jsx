@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useIsAuthenticated } from "@azure/msal-react";
-import { SignInButton, SignOutButton } from "../AuthButtons";
+import { SignInButton, SignOutButton } from "./AuthButtons";
 
 // Wrapper style for the button container
 const Wrapper = styled.div`

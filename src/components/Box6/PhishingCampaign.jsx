@@ -1,8 +1,10 @@
 import React from "react";
 import ApexCharts from "react-apexcharts";
-import Header from "./Header";
-import Table from "./Table";
+import Header from "../other/Header";
+import Table from "../Box8/Table";
 import styled from "styled-components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFishFins } from "@fortawesome/free-solid-svg-icons";
 
 class ApexChart extends React.Component {
   constructor(props) {
@@ -126,7 +128,11 @@ function PhishingCampaign() {
 
   return (
     <Container>
-      <Header text={"text"} title={"Phishing Campaigns"} />
+      <Header
+        text={"text"}
+        title={"Phishing Campaigns"}
+        icon={<FontAwesomeIcon icon={faFishFins} />}
+      />
       <YellowBox>
         <Title>Click Prone</Title>
         <BoxTwoThirds>

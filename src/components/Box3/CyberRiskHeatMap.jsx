@@ -1,8 +1,10 @@
 import React from "react";
-import Header from "./Header";
+import Header from "../other/Header";
 import styled from "styled-components";
-import Table from "./Table";
+import Table from "../Box8/Table";
 import map from "../../assets/heat_map.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTemperatureHalf } from "@fortawesome/free-solid-svg-icons";
 
 function CyberRiskHeatMap() {
   const headers = ["Rank", "Risk Name"];
@@ -15,7 +17,11 @@ function CyberRiskHeatMap() {
   ];
   return (
     <Container>
-      <Header text={"?"} title={"Cyber Risk Heat Map"} />
+      <Header
+        text={"?"}
+        title={"Cyber Risk Heat Map"}
+        icon={<FontAwesomeIcon icon={faTemperatureHalf} />}
+      />
 
       <YellowBox>
         {" "}

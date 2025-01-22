@@ -1,8 +1,10 @@
 import React from "react";
-import Header from "./Header";
+import Header from "../other/Header";
 import styled from "styled-components";
 import GaugeComponent from "react-gauge-component";
 import SecureScore from "./SecureScore";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChartSimple } from "@fortawesome/free-solid-svg-icons";
 
 function OverallScore() {
   const data = [
@@ -47,6 +49,7 @@ function OverallScore() {
             </ul>
           </>
         }
+        icon={<FontAwesomeIcon icon={faChartSimple} />}
         title={"Overall Cyber Posture Score"}
       />
       <YellowBox>

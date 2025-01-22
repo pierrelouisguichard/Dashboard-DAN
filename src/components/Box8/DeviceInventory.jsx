@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import Header from "./Header";
+import Header from "../other/Header";
 import styled from "styled-components";
 import Devices from "./Devices";
 import Users from "./Users";
 import Softwares from "./Softwares";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faComputer } from "@fortawesome/free-solid-svg-icons";
 
 function DeviceInventory() {
   const [activeTab, setActiveTab] = useState("Devices");
@@ -44,6 +46,7 @@ function DeviceInventory() {
           </>
         }
         title={"d'Angelin Estate"}
+        icon={<FontAwesomeIcon icon={faComputer} />}
       />
       <Centre>
         <RadioInputs>

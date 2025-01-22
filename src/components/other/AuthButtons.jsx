@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useMsal } from "@azure/msal-react";
-import { loginRequest } from "../authConfig";
+import { loginRequest } from "../../API/authConfig";
 
 // Enhanced styled button component
 const StyledButton = styled.button`

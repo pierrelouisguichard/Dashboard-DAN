@@ -11,13 +11,13 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
-import Agreement from "./components/new/Agreement";
-import { SignInButton, SignOutButton } from "./components/AuthButtons";
+import Agreement from "./components/other/Agreement";
+import { SignInButton, SignOutButton } from "./components/other/AuthButtons";
 import styled from "styled-components";
-import MaterialTable from "./components/new/MaterialTable";
-import { loginRequest } from "./authConfig";
+import MaterialTable from "./components/Box8/MaterialTable";
+import { loginRequest } from "./API/authConfig";
 import React, { useEffect, useState } from "react";
-import { fetchDeviceData } from "./graph";
+import { fetchDeviceData } from "./API/graph";
 
 const MainContent = () => {
   const isAuthenticated = useIsAuthenticated();

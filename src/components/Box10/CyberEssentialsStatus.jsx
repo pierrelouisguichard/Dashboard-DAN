@@ -1,15 +1,24 @@
 import React from "react";
-import Header from "./Header";
+import Header from "../other/Header";
 import styled from "styled-components";
 import picture1 from "../../assets/cyber_essentials.png";
 import picture2 from "../../assets/cyber_essentials_plus.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 
 function CyberEssentialsStatus() {
   return (
     <Container>
-      <Header text={  <p>
-    The Cyber Essentials Status component shows the Cyber Essentials logo along with the expiration date of the certification.
-  </p>} title={"Cyber Essentials Status"} />
+      <Header
+        text={
+          <p>
+            The Cyber Essentials Status component shows the Cyber Essentials
+            logo along with the expiration date of the certification.
+          </p>
+        }
+        title={"Cyber Essentials Status"}
+        icon={<FontAwesomeIcon icon={faCircleCheck} />}
+      />
       <YellowBox>
         <ImagesWrapper>
           <StyledImage src={picture1} alt="Description of picture 1" />

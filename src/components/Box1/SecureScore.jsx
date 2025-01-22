@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Header from "./Header";
+import Header from "../other/Header";
 import styled from "styled-components";
 import { Line } from "react-chartjs-2";
 import {
@@ -12,9 +12,9 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-import { loginRequest } from "../../authConfig";
+import { loginRequest } from "../../API/authConfig";
 import { useMsal } from "@azure/msal-react";
-import { fetchSecureScoreData } from "../../graph";
+import { fetchSecureScoreData } from "../../API/graph";
 
 // Register chart.js components
 ChartJS.register(

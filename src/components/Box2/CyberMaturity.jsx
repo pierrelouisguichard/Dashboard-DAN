@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "./Header";
+import Header from "../other/Header";
 import styled from "styled-components";
 import { Radar } from "react-chartjs-2";
 import {
@@ -11,6 +11,8 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowTrendUp } from "@fortawesome/free-solid-svg-icons";
 
 // Register chart.js components
 ChartJS.register(
@@ -108,6 +110,7 @@ function CyberMaturity() {
           </>
         }
         title={"Cyber Maturity"}
+        icon={<FontAwesomeIcon icon={faArrowTrendUp} />}
       />
       <YellowBox>
         <Radar data={data} options={options} />
