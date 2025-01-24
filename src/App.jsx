@@ -12,24 +12,35 @@ import {
   Navigate,
 } from "react-router-dom";
 import Agreement from "./components/other/Agreement";
-import { SignInButton, SignOutButton } from "./components/other/AuthButtons";
-import styled from "styled-components";
 import MaterialTable from "./components/Box8/MaterialTable";
 import { loginRequest } from "./API/authConfig";
 import React, { useEffect, useState } from "react";
 import { fetchDeviceData } from "./API/graph";
+import LandingPage from "./components/other/Landing";
+import { createGlobalStyle } from "styled-components";
+
+const GlobalStyle = createGlobalStyle`
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+  }
+`;
 
 const MainContent = () => {
-  const isAuthenticated = useIsAuthenticated();
-
   return (
     <>
+      <GlobalStyle />
       <AuthenticatedTemplate>
         <GridLayout />
       </AuthenticatedTemplate>
 
       <UnauthenticatedTemplate>
-        <Grey>{isAuthenticated ? <SignOutButton /> : <SignInButton />}</Grey>
+        <LandingPage />
       </UnauthenticatedTemplate>
     </>
   );
@@ -92,11 +103,3 @@ export default function App() {
     </Router>
   );
 }
-
-const Grey = styled.div`
-  background-color: grey;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;

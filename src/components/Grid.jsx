@@ -1,7 +1,5 @@
 import styled, { keyframes } from "styled-components";
-import Title from "./other/Title";
-import LogButton from "./other/LogButton";
-import ExportPDF from "./other/ExportPDF";
+import NavBar from "./other/NavBar";
 import OverallScore from "./Box1/OverallScore";
 import VulnerabilityManagement from "./Box7/VulnerabilityManagement";
 import CyberEssentialsStatus from "./Box10/CyberEssentialsStatus";
@@ -11,11 +9,14 @@ import Leavers from "./Box5/Leavers";
 import PhishingCampaign from "./Box6/PhishingCampaign";
 import DeviceInventory from "./Box8/DeviceInventory";
 import KeyDates from "./Box9/KeyDates";
-import SecureScore from "./Box1/SecureScore";
 import CyberMaturity from "./Box2/CyberMaturity";
 
 const Background = styled.div`
-  background-color: #f0f0f0;
+  background: linear-gradient(
+    to bottom,
+    rgba(240, 240, 240),
+    rgb(222, 235, 247)
+  );
 `;
 
 const fadeIn = keyframes`
@@ -34,10 +35,10 @@ const GridContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(8, 1fr);
   grid-auto-rows: 1fr;
-  gap: 10px;
+  gap: 12px;
   max-width: 2200px;
   width: auto;
-  height: 100vh;
+  height: 90vh;
   padding: 10px;
   aspect-ratio: 104 / 50;
 
@@ -59,7 +60,7 @@ const GridContainer = styled.div`
 `;
 
 const Item = styled.div`
-  border-radius: 5px;
+  border-radius: 10px;
   background-color: #ffffff;
   display: flex;
   align-items: center;
@@ -78,29 +79,10 @@ const Item = styled.div`
   animation-delay: ${(props) => props.delay || 0}s;
 `;
 
-const Navbar = styled(Item)`
-  @media (max-width: 1900px) {
-    grid-column: span 3;
-  }
-  @media (max-width: 1000px) {
-    grid-column: span 2;
-    grid-row: span 3;
-  }
-`;
-
 const GridLayout = () => (
   <Background>
+    <NavBar />
     <GridContainer>
-      <Navbar colSpan={7} rowSpan={2} delay={0}>
-        <Title />
-      </Navbar>
-
-      <Item colSpan={1} rowSpan={1} delay={0.2}>
-        <LogButton />
-      </Item>
-      <Item colSpan={1} rowSpan={1} delay={0.4}>
-        <ExportPDF />
-      </Item>
       <Item colSpan={2} rowSpan={8} delay={0.6}>
         <OverallScore />
       </Item>
