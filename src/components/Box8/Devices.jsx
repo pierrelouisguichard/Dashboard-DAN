@@ -3,58 +3,54 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
-import DataTable from "./DataTable";
 import { useMsal } from "@azure/msal-react";
 import { loginRequest } from "../../API/authConfig";
 import { fetchDeviceData } from "../../API/graph";
+import MaterialTable from "./MaterialTable";
 
 function Devices() {
   const [selectedDeviceType, setSelectedDeviceType] = useState(null);
   const { instance, accounts } = useMsal();
   const [deviceData, setDeviceData] = useState([]);
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     if (accounts.length > 0) {
-  //       try {
-  //         const response = await instance.acquireTokenSilent({
-  //           ...loginRequest,
-  //           account: accounts[0],
-  //         });
-  //         const data = await fetchDeviceData(response.accessToken);
-  //         setDeviceData(data.value || []);
-  //       } catch (error) {
-  //         console.error("Error fetching device data", error);
-  //       }
-  //     }
-  //   };
+  useEffect(() => {
+    const fetchData = async () => {
+      if (accounts.length > 0) {
+        try {
+          const response = await instance.acquireTokenSilent({
+            ...loginRequest,
+            account: accounts[0],
+          });
+          const data = await fetchDeviceData(response.accessToken);
+          setDeviceData(data);
+        } catch (error) {
+          console.error("Error fetching device data", error);
+        }
+      }
+    };
 
-  //   fetchData();
-  // }, [accounts, instance]);
+    fetchData();
+  }, [accounts, instance]);
 
-  const { desktops, laptops } =
+  const desktops =
     deviceData.length > 0
       ? deviceData
-          .filter((device) => device.operatingSystem === "Windows") // Filter Windows devices
-          .filter((device) => device.displayName.startsWith("LOW")) // Keep only those starting with "LOW"
-          .reduce(
-            (result, device) => {
-              if (device.displayName[5] === "D") {
-                // Add to desktops
-              } else if (device.displayName[5] === "L") {
-                // Add to laptops
-              }
-              return result;
-            },
-            { desktops: [], laptops: [] } // Initial object
-          )
-      : { desktops: [], laptops: [] }; // Default empty arrays if no data
+          .filter((device) => device.operatingSystem === "Windows")
+          .filter((device) => device.displayName.startsWith("LOW"))
+          .filter((device) => device.displayName[5] === "D")
+      : [];
+
+  const laptops =
+    deviceData.length > 0
+      ? deviceData
+          .filter((device) => device.operatingSystem === "Windows")
+          .filter((device) => device.displayName.startsWith("LOW"))
+          .filter((device) => device.displayName[5] === "L")
+      : [];
 
   const iPhoneData =
     deviceData.length > 0
-      ? deviceData
-          .filter((device) => device.operatingSystem === "IPhone")
-          .map((device) => [device.displayName, device.model])
+      ? deviceData.filter((device) => device.operatingSystem === "IPhone")
       : [];
 
   const handleButtonClick = (deviceType) => {
@@ -62,7 +58,7 @@ function Devices() {
   };
 
   const handleBackClick = () => {
-    setSelectedDeviceType(null); // Reset to show buttons again
+    setSelectedDeviceType(null);
   };
   return (
     <YellowBox>
@@ -71,9 +67,7 @@ function Devices() {
           <BackButton onClick={handleBackClick}>
             <FontAwesomeIcon icon={faChevronLeft} /> Back
           </BackButton>
-          <DataTable
-            label1="Computer's Name"
-            label2="Model"
+          <MaterialTable
             data={
               selectedDeviceType === "Laptops"
                 ? laptops
@@ -81,21 +75,17 @@ function Devices() {
                 ? desktops
                 : selectedDeviceType === "Phones"
                 ? iPhoneData
-                : [] // Default to an empty array if no match
+                : []
             }
           />
         </>
       ) : (
-        <>
+        <Mid>
           <Button onClick={() => handleButtonClick("Desktops")}>
             <TextContainer>
               <Number>{desktops.length}</Number>
               Desktops
             </TextContainer>
-            {/* <StyledDiv> */}
-            <StyledParagraph>100% Encrypted</StyledParagraph>
-            <StyledParagraph>100% Antivirus</StyledParagraph>
-            {/* </StyledDiv> */}
             <Chevron>
               <FontAwesomeIcon icon={faChevronDown} />
             </Chevron>
@@ -105,10 +95,6 @@ function Devices() {
               <Number>{laptops.length}</Number>
               Laptops
             </TextContainer>
-            {/* <StyledDiv> */}
-            <StyledParagraph>100% Encrypted</StyledParagraph>
-            <StyledParagraph>100% Antivirus</StyledParagraph>
-            {/* </StyledDiv> */}
             <Chevron>
               <FontAwesomeIcon icon={faChevronDown} />
             </Chevron>
@@ -122,7 +108,7 @@ function Devices() {
               <FontAwesomeIcon icon={faChevronDown} />
             </Chevron>
           </Button>
-        </>
+        </Mid>
       )}
     </YellowBox>
   );
@@ -130,14 +116,15 @@ function Devices() {
 
 export default Devices;
 
-const StyledParagraph = styled.p`
-  text-align: left;
-  font-size: 0.9rem; /* Adjust this for your preferred smaller size */
-  color: #95bed2;
-`;
-
 const YellowBox = styled.div`
   flex-grow: 1;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+`;
+
+const Mid = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
@@ -150,7 +137,7 @@ const Button = styled.button`
   background-color: transparent;
   color: #186e98;
   border: none;
-  font-size: 24px;
+  font-size: 14px;
   cursor: pointer;
   height: 100%;
   width: 90%;
@@ -168,30 +155,27 @@ const TextContainer = styled.div`
 `;
 
 const Number = styled.span`
-  font-size: 4rem;
+  font-size: 3rem;
   font-weight: bold;
-  margin-bottom: 2px;
 `;
 
 const Chevron = styled.span`
-  font-size: 2rem;
+  font-size: 1.5rem;
 `;
 
 const BackButton = styled.button`
+  padding-top: 20px;
   margin-left: 40px;
   width: 100%;
-  /* background-color: blue; */
   background-color: transparent;
   color: #186e98;
   border: none;
-  font-size: 18px;
+  font-size: 12px;
   cursor: pointer;
-  margin-bottom: 20px;
   display: flex;
-  justify-content: flex-start; /* Align children (icon and text) to the left */
+  justify-content: flex-start;
   align-items: center;
   font-weight: bold;
-  padding: 5px;
 
   &:hover {
     text-decoration: underline;

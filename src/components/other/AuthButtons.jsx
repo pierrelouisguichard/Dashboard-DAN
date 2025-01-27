@@ -4,6 +4,7 @@ import { useMsal } from "@azure/msal-react";
 import { loginRequest } from "../../API/authConfig";
 
 const Btn = styled.button`
+  font-size: 0.8rem;
   display: flex;
   align-items: center;
   justify-content: flex-start;

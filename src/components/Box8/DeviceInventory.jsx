@@ -141,6 +141,7 @@ const Radio = styled.label`
 `;
 
 const Content = styled.div`
+  /* background-color: yellow; */
   flex-grow: 1;
-  padding: 20px;
+  overflow: hidden;
 `;

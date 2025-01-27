@@ -53,52 +53,54 @@ const ProtectedRoute = ({ element }) => {
 };
 
 export default function App() {
-  const { instance, accounts } = useMsal();
-  const [deviceData, setDeviceData] = useState([]);
+  // const { instance, accounts } = useMsal();
+  // const [deviceData, setDeviceData] = useState([]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      if (accounts.length > 0) {
-        try {
-          const response = await instance.acquireTokenSilent({
-            ...loginRequest,
-            account: accounts[0],
-          });
-          const data = await fetchDeviceData(response.accessToken);
-          console.log("Fetched data:", data);
-          setDeviceData(data.value || []); // Ensure it's an array
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     if (accounts.length > 0) {
+  //       try {
+  //         const response = await instance.acquireTokenSilent({
+  //           ...loginRequest,
+  //           account: accounts[0],
+  //         });
+  //         const data = await fetchDeviceData(response.accessToken);
+  //         console.log("Fetched data:", data);
+  //         setDeviceData(data.value || []); // Ensure it's an array
 
-          console.log("Fetched data:", data); // Log the fetched data
-          setDeviceData(data || []); // Update the state with fetched data
-        } catch (error) {
-          console.error("Error fetching device data", error);
-        }
-      } else {
-        console.log("No accounts available.");
-      }
-    };
+  //         console.log("Fetched data:", data); // Log the fetched data
+  //         setDeviceData(data || []); // Update the state with fetched data
+  //       } catch (error) {
+  //         console.error("Error fetching device data", error);
+  //       }
+  //     } else {
+  //       console.log("No accounts available.");
+  //     }
+  //   };
 
-    fetchData();
-  }, [accounts, instance]);
+  //   fetchData();
+  // }, [accounts, instance]);
 
-  useEffect(() => {
-    console.log("Device data updated:", deviceData); // Log when deviceData changes
-  }, [deviceData]);
+  // useEffect(() => {
+  //   console.log("Device data updated:", deviceData); // Log when deviceData changes
+  // }, [deviceData]);
 
   return (
     <Router>
       <Routes>
         <Route path="/" element={<MainContent />} />
+
+        {/* <Route path="d" element={<MaterialTable data={deviceData} />} /> */}
         <Route
           path="/agreement"
           element={<ProtectedRoute element={<Agreement />} />}
         />
-        <Route
+        {/* <Route
           path="/devices"
           element={
             <ProtectedRoute element={<MaterialTable data={deviceData} />} />
           }
-        />
+        /> */}
       </Routes>
     </Router>
   );

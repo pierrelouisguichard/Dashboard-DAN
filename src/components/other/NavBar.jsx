@@ -5,7 +5,7 @@ import logo from "../../assets/logo.png";
 import { SignOutButton, PrintButton } from "./AuthButtons";
 
 const Wrapper = styled.div`
-  background-color: white;
+  /* background-color: white; */
   height: 10vh;
   font-size: 2.5rem;
   margin: 0;
@@ -44,17 +44,25 @@ const TitleText = styled.div`
   flex-grow: 1;
 `;
 
-function NavBar() {
+const ButtonContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+`;
+
+function Title() {
   return (
     <Wrapper>
       <LogoLink to="/agreement">
         <Logo src={logo} alt="Logo" />
       </LogoLink>
       <TitleText>d’Angelin Cyber Security Dashboard</TitleText>
-      <SignOutButton />
-      <PrintButton />
+      <ButtonContainer>
+        <SignOutButton />
+        <PrintButton />
+      </ButtonContainer>
     </Wrapper>
   );
 }
 
-export default NavBar;
+export default Title;
