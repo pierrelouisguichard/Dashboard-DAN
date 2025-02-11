@@ -1,7 +1,7 @@
 import React from "react";
 
 function EVS() {
-  return <div>EVS</div>;
+  return <div></div>;
 }
 
 export default EVS;

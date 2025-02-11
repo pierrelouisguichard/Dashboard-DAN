@@ -1,36 +1,58 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Header from "../other/Header";
-import Table from "../Box8/Table";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserMinus } from "@fortawesome/free-solid-svg-icons";
+import aarman from "../../assets/aarman.jpeg";
+import lucrezia from "../../assets/lucrezia.jpeg";
+import federico from "../../assets/Federicco.jpeg";
+import nicolas from "../../assets/nicolas.jpeg";
+import gennaro from "../../assets/gennaro.jpeg";
 
 function Leavers() {
-  const headers = ["Name", "Date"];
-  const rows = [
-    ["Aarman Murgai", "21 Dec 2024"],
-    ["Lucrezia Rossini", "21 Dec 2024"],
-    ["Federico Rotolo", "20 Nov 2024"],
-    ["Nicolas Goig", "08 Nov 2024"],
-    ["Gennaro Bertolino ", "07 Nov 2024"],
+  const leavers = [
+    { name: "Aarman Murgai", date: "21 Dec 2024", image: aarman },
+    { name: "Lucrezia Rossini", date: "21 Dec 2024", image: lucrezia },
+    { name: "Federico Rotolo", date: "20 Nov 2024", image: federico },
+    { name: "Nicolas Goig", date: "08 Nov 2024", image: nicolas },
+    // { name: "Gennaro Bertolino", date: "07 Nov 2024", image: gennaro },
   ];
+
+  const [visibleLeavers, setVisibleLeavers] = useState(leavers);
+
+  useEffect(() => {
+    const updateVisibleLeavers = () => {
+      if (window.innerWidth < 1900) {
+        setVisibleLeavers(leavers.slice(0, 3));
+      } else {
+        setVisibleLeavers(leavers);
+      }
+    };
+
+    updateVisibleLeavers();
+    window.addEventListener("resize", updateVisibleLeavers);
+    return () => window.removeEventListener("resize", updateVisibleLeavers);
+  }, [leavers]);
 
   return (
     <Container>
-      <Header
-        text={
-          <>
-            <p>
-              The Leavers component shows the most recent employees who have
-              left the organisation, along with the date they left.
-            </p>
-          </>
-        }
-        title={"Leavers"}
-        icon={<FontAwesomeIcon icon={faUserMinus} />}
-      />
+      <Header title={"Leavers"} icon={<FontAwesomeIcon icon={faUserMinus} />} />
       <YellowBox>
-        <Table headers={headers} rows={rows} />
+        <LeaversList>
+          {visibleLeavers.map((leaver, index) => (
+            <>
+              <LeaverItem key={index}>
+                <LeaverLeft>
+                  <LeaverImage src={leaver.image} alt={leaver.name} />
+                  <Name>{leaver.name}</Name>
+                </LeaverLeft>
+                <Date>{leaver.date}</Date>
+              </LeaverItem>
+
+              {index < visibleLeavers.length - 1 && <Divider />}
+            </>
+          ))}
+        </LeaversList>
       </YellowBox>
     </Container>
   );
@@ -46,11 +68,56 @@ const Container = styled.div`
 `;
 
 const YellowBox = styled.div`
-  padding-left: 30px;
-  padding-right: 30px;
   flex-grow: 1;
   width: 100%;
   display: flex;
   justify-content: center;
+  align-items: top;
+`;
+
+const LeaversList = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  padding-left: 30px;
+  padding-right: 30px;
+`;
+
+const LeaverItem = styled.div`
+  display: flex;
+  justify-content: space-between;
   align-items: center;
+  width: 100%;
+  padding: 4px 0;
+`;
+
+const LeaverLeft = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+`;
+
+const LeaverImage = styled.img`
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+`;
+
+const Name = styled.span`
+  color: #186e98;
+  font-size: 0.7em;
+`;
+
+const Date = styled.span`
+  color: #95bed2;
+  font-size: 0.6em;
+  text-align: right;
+`;
+
+const Divider = styled.div`
+  width: 100%;
+  height: 2px;
+  background-color: #ecf5f9;
+  margin: 1px 0;
 `;

@@ -82,19 +82,31 @@ function Devices() {
       ) : (
         <Mid>
           <Button onClick={() => handleButtonClick("Desktops")}>
-            <TextContainer>
-              <Number>{desktops.length}</Number>
-              Desktops
-            </TextContainer>
+            <Left>
+              <TextContainer>
+                <Number>{desktops.length}</Number>
+                Desktops
+              </TextContainer>
+              <BubbleContainer>
+                <Tag>100% Encryption</Tag>
+                <Tag>100% Antivirus</Tag>
+              </BubbleContainer>
+            </Left>
             <Chevron>
               <FontAwesomeIcon icon={faChevronDown} />
             </Chevron>
           </Button>
           <Button onClick={() => handleButtonClick("Laptops")}>
-            <TextContainer>
-              <Number>{laptops.length}</Number>
-              Laptops
-            </TextContainer>
+            <Left>
+              <TextContainer>
+                <Number>{laptops.length}</Number>
+                Laptops
+              </TextContainer>
+              <BubbleContainer>
+                <Tag>100% Encryption</Tag>
+                <Tag>100% Antivirus</Tag>
+              </BubbleContainer>
+            </Left>
             <Chevron>
               <FontAwesomeIcon icon={faChevronDown} />
             </Chevron>
@@ -152,6 +164,29 @@ const TextContainer = styled.div`
   flex-direction: column;
   align-items: flex-start;
   line-height: 1.1;
+`;
+
+const BubbleContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1;
+  padding-left: 20px;
+`;
+
+const Tag = styled.div`
+  background-color: #b6d6e7;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 12px;
+  font-size: 0.6rem;
+  display: inline-block;
+  margin-top: 10px;
+`;
+
+const Left = styled.div`
+  display: flex;
+  justify-content: left;
 `;
 
 const Number = styled.span`

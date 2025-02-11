@@ -5,6 +5,7 @@ import Table from "../Box8/Table";
 import map from "../../assets/heat_map.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTemperatureHalf } from "@fortawesome/free-solid-svg-icons";
+import StyledGrid from "./StyledGrid";
 
 function CyberRiskHeatMap() {
   const headers = ["Rank", "Risk Name"];
@@ -18,15 +19,14 @@ function CyberRiskHeatMap() {
   return (
     <Container>
       <Header
-        text={"?"}
         title={"Cyber Risk Heat Map"}
         icon={<FontAwesomeIcon icon={faTemperatureHalf} />}
       />
 
       <YellowBox>
-        {" "}
-        <Map src={map} alt="Map" />
-        <Table headers={headers} rows={rows} />
+        <StyledGrid />
+        {/* <Map src={map} alt="Map" />
+        <Table headers={headers} rows={rows} /> */}
       </YellowBox>
     </Container>
   );

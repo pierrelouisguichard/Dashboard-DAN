@@ -121,15 +121,14 @@ class ApexChart extends React.Component {
 function PhishingCampaign() {
   const headers = ["Name", "Click-Prone %"];
   const rows = [
-    ["Person 1", "22"],
-    ["Person 2", "19"],
-    ["Person 3", "15"],
+    ["Geoffrey Planas", "22"],
+    ["Anthoney Bizi", "19"],
+    ["Erwan Kervegant", "15"],
   ];
 
   return (
     <Container>
       <Header
-        text={"text"}
         title={"Phishing Campaigns"}
         icon={<FontAwesomeIcon icon={faFishFins} />}
       />

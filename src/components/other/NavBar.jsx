@@ -5,7 +5,7 @@ import logo from "../../assets/logo.png";
 import { SignOutButton, PrintButton } from "./AuthButtons";
 
 const Wrapper = styled.div`
-  /* background-color: white; */
+  /* background-color: blue; */
   height: 10vh;
   font-size: 2.5rem;
   margin: 0;
@@ -18,6 +18,7 @@ const Wrapper = styled.div`
   align-items: center;
   justify-content: space-between;
   position: relative;
+  max-width: 1900px;
 
   @media (max-width: 2000px) {
     font-size: 1.5rem;
@@ -25,9 +26,13 @@ const Wrapper = styled.div`
   }
 `;
 
+const LeftContainer = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
 const LogoLink = styled(Link)`
-  position: absolute;
-  left: 10px;
+  margin-right: 10px;
 `;
 
 const Logo = styled.img`
@@ -39,9 +44,23 @@ const Logo = styled.img`
   }
 `;
 
+const Pill = styled.div`
+  width: 15px;
+  height: 15px;
+  background-color: #186e98;
+  border-radius: 50%;
+  margin-right: 10px;
+`;
+
 const TitleText = styled.div`
-  text-align: center;
-  flex-grow: 1;
+  text-align: left;
+`;
+
+const Inside = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 `;
 
 const ButtonContainer = styled.div`
@@ -52,16 +71,21 @@ const ButtonContainer = styled.div`
 
 function Title() {
   return (
-    <Wrapper>
-      <LogoLink to="/agreement">
-        <Logo src={logo} alt="Logo" />
-      </LogoLink>
-      <TitleText>d’Angelin Cyber Security Dashboard</TitleText>
-      <ButtonContainer>
-        <SignOutButton />
-        <PrintButton />
-      </ButtonContainer>
-    </Wrapper>
+    <Inside>
+      <Wrapper>
+        <LeftContainer>
+          <LogoLink to="/agreement">
+            <Logo src={logo} alt="Logo" />
+          </LogoLink>
+          <Pill />
+          <TitleText>Cyber Security Dashboard</TitleText>
+        </LeftContainer>
+        <ButtonContainer>
+          <SignOutButton />
+          <PrintButton />
+        </ButtonContainer>
+      </Wrapper>
+    </Inside>
   );
 }
 

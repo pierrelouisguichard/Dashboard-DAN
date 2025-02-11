@@ -11,21 +11,21 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import ChartDataLabels from "chartjs-plugin-datalabels";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowTrendUp } from "@fortawesome/free-solid-svg-icons";
 
-// Register chart.js components
 ChartJS.register(
   RadialLinearScale,
   PointElement,
   LineElement,
   Filler,
   Tooltip,
-  Legend
+  Legend,
+  ChartDataLabels // Register DataLabels Plugin
 );
 
 function CyberMaturity() {
-  // Updated radar chart data with 6 labels and a second dataset
   const data = {
     labels: [
       "Secure Score",
@@ -33,70 +33,82 @@ function CyberMaturity() {
       "IVS",
       "Encryption",
       "Antivirus",
-      "Patching", // Add a 6th category
+      "Patching",
     ],
     datasets: [
       {
         label: "Vulnerability Score",
-        data: [80, 90, 75, 85, 70, 88], // Data for the first dataset
-        backgroundColor: "rgba(255, 2, 137, 0.128)", // Yellow background
-        borderColor: "#fc00b1", // Yellow border
+        data: [67, 57, 95, 100, 100, 88],
+        backgroundColor: "rgba(255, 2, 137, 0.128)",
+        borderColor: "#fc00b1",
         borderWidth: 2,
-        tension: 0.1, // Smoother curve
-        pointRadius: 0, // Remove dots
+        tension: 0.1,
+        pointRadius: 5, // Show points
+        pointBackgroundColor: "#fc00b1",
       },
       {
         label: "Target Score",
-        data: [90, 95, 85, 90, 85, 90], // Data for the second dataset
-        backgroundColor: "rgba(69, 224, 209, 0.106)", // Green background
-        borderColor: "#079fd6", // Green border
+        data: [75, 75, 100, 100, 100, 95],
+        backgroundColor: "rgba(69, 224, 209, 0.106)",
+        borderColor: "#079fd6",
         borderWidth: 2,
-        tension: 0.1, // Smoother curve
-        pointRadius: 0, // Remove dots
+        tension: 0.1,
+        pointRadius: 0, // Hide points for Target Score
       },
     ],
   };
 
-  // Options for the radar chart with customized labels
   const options = {
     scales: {
       r: {
         angleLines: {
-          display: false, // Keep angle lines, just reduce their number
-          lineWidth: 1, // Optional: reduce the width of the lines
+          display: false,
+          lineWidth: 1,
         },
         suggestedMin: 0,
         suggestedMax: 100,
         ticks: {
-          display: true, // Show ticks
-          maxTicksLimit: 10, // Limit the number of ticks (lines) on the radar
-          stepSize: 10, // Optional: control the spacing between the ticks
+          display: true,
+          maxTicksLimit: 10,
+          stepSize: 10,
           color: "#186e98",
           font: {
-            family: "Nunito", // Set font family for labels
+            family: "Nunito",
           },
         },
         pointLabels: {
           font: {
-            family: "Nunito", // Set font family for labels
-            size: 14, // Optional: set font size
-            weight: "bold", // Optional: set font weight
+            family: "Nunito",
+            size: 14,
+            weight: "bold",
           },
-          color: "#186e98", // Set label color
+          color: "#186e98",
         },
       },
     },
     plugins: {
       legend: {
-        position: "bottom", // Move the legend to the bottom of the chart
+        position: "bottom",
         labels: {
           font: {
-            family: "Nunito", // Set font family for legend labels
-            size: 14, // Optional: set font size for legend
-            weight: "bold", // Optional: set font weight for legend
+            family: "Nunito",
+            size: 14,
+            weight: "bold",
           },
-          color: "#186e98", // Set legend label color
+          color: "#186e98",
         },
+      },
+      datalabels: {
+        color: "#fc00b1", // Blue color for labels
+        font: {
+          weight: "bold",
+          size: 14,
+        },
+        formatter: (value, context) => {
+          return context.dataset.label === "Vulnerability Score" ? value : null;
+        },
+        anchor: "end",
+        align: "top",
       },
     },
   };
@@ -104,11 +116,6 @@ function CyberMaturity() {
   return (
     <Container>
       <Header
-        text={
-          <>
-            <p>?</p>
-          </>
-        }
         title={"Cyber Maturity"}
         icon={<FontAwesomeIcon icon={faArrowTrendUp} />}
       />
@@ -124,16 +131,15 @@ export default CyberMaturity;
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100%; /* Take full viewport height */
+  height: 100%;
   width: 100%;
 `;
 
 const YellowBox = styled.div`
-  /* background-color: yellow; */
   flex-grow: 1;
   display: flex;
   justify-content: center;
   align-items: center;
-  max-width: 100%; /* Ensure no horizontal overflow */
-  max-height: 85%; /* Ensure no vertical overflow */
+  max-width: 100%;
+  max-height: 85%;
 `;

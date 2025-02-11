@@ -5,50 +5,25 @@ import GaugeComponent from "react-gauge-component";
 import SecureScore from "./SecureScore";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChartSimple } from "@fortawesome/free-solid-svg-icons";
+import { avatarClasses } from "@mui/material";
 
 function OverallScore() {
   const data = [
-    { value: "67%", label: "Secure Score" },
-    { value: "57%", label: "EVS" },
-    { value: "95%", label: "IVS" },
-    { value: "74%", label: "Encryption" },
-    { value: "83%", label: "Antivirus" },
-    { value: "88%", label: "Patching" },
+    { value: 67, label: "MS Secure Score" },
+    { value: 57, label: "EVS" },
+    { value: 95, label: "IVS" },
+    { value: 100, label: "Encryption" },
+    { value: 100, label: "Antivirus" },
+    { value: 88, label: "Patching" },
   ];
+
+  const average = Math.round(
+    data.reduce((sum, item) => sum + item.value, 0) / data.length
+  );
 
   return (
     <Container>
       <Header
-        text={
-          <>
-            <p>
-              The Overall Score component provides a security score calculated
-              from various factors, such as Microsoft Secure Score, encryption
-              and antivirus coverage, phishing campaign results, and
-              vulnerability management.
-            </p>
-            <ul
-              style={{
-                padding: "0",
-                margin: "0",
-                listStylePosition: "inside",
-              }}
-            >
-              <li>
-                Shows a combined security score based on multiple security
-                factors.
-              </li>
-              <li>
-                Includes metrics like encrypted devices, antivirus coverage,
-                phishing results, and vulnerability management.
-              </li>
-              <li>
-                Offers a unified view of the organization’s overall security
-                posture.
-              </li>
-            </ul>
-          </>
-        }
         icon={<FontAwesomeIcon icon={faChartSimple} />}
         title={"Overall Cyber Posture Score"}
       />
@@ -86,12 +61,12 @@ function OverallScore() {
             }}
           />
         </Gauge>
-        <StyledDiv>85%</StyledDiv>
+        <StyledDiv>{average}%</StyledDiv>
       </YellowBox>
       <Box>
         {data.map((item, index) => (
           <GridItem key={index}>
-            <div>{item.value}</div>
+            <Num>{item.value}%</Num>
             <Label>{item.label}</Label>
           </GridItem>
         ))}
@@ -121,10 +96,13 @@ const GridItem = styled.div`
   color: black;
 `;
 
+const Num = styled.div`
+  color: #186e98;
+`;
 const Label = styled.div`
   font-size: 1rem;
   font-weight: normal;
-  color: #333;
+  color: #95bed2;
 `;
 
 const Container = styled.div`

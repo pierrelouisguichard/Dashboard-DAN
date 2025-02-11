@@ -10,12 +10,6 @@ function CyberEssentialsStatus() {
   return (
     <Container>
       <Header
-        text={
-          <p>
-            The Cyber Essentials Status component shows the Cyber Essentials
-            logo along with the expiration date of the certification.
-          </p>
-        }
         title={"Cyber Essentials Status"}
         icon={<FontAwesomeIcon icon={faCircleCheck} />}
       />
@@ -57,14 +51,14 @@ const YellowBox = styled.div`
 const ImagesWrapper = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  gap: 100px;
+  justify-content: left;
+  gap: 60px;
 `;
 
 const StyledImage = styled.img`
-  max-width: 100%;
+  max-width: 80%;
   height: auto;
-  max-height: 110px;
+  max-height: 100px;
   object-fit: contain;
 
   /* Add media queries to reduce image size on smaller devices */
@@ -85,6 +79,5 @@ const StyledImage = styled.img`
 const ExpirationText = styled.p`
   color: #95bed2;
   margin-top: 10px;
-  font-weight: bold;
-  font-size: 1rem;
+  font-size: 0.9rem;
 `;

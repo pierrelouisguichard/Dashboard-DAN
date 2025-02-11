@@ -12,11 +12,7 @@ import KeyDates from "./Box9/KeyDates";
 import CyberMaturity from "./Box2/CyberMaturity";
 
 const Background = styled.div`
-  background: linear-gradient(
-    to bottom,
-    rgba(240, 240, 240),
-    rgb(222, 235, 247)
-  );
+  background-color: #f6f6f9;
 `;
 
 const fadeIn = keyframes`
@@ -35,12 +31,12 @@ const GridContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(8, 1fr);
   grid-auto-rows: 1fr;
-  gap: 12px;
+  gap: 10px;
   max-width: 2200px;
   width: auto;
   height: 90vh;
   padding: 10px;
-  aspect-ratio: 104 / 50;
+  aspect-ratio: 90 / 50;
 
   @media (max-width: 1900px) {
     grid-template-columns: repeat(4, 1fr);
@@ -61,7 +57,7 @@ const GridContainer = styled.div`
 
 const Item = styled.div`
   border-radius: 10px;
-  background-color: #ffffff;
+  background-color: white;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -70,18 +66,18 @@ const Item = styled.div`
   grid-column: span ${(props) => props.colSpan || 1};
   grid-row: span ${(props) => props.rowSpan || 1};
 
-  /* Apply the animation */
   animation: ${fadeIn} 0.5s ease-out forwards;
   opacity: 0;
   transform: translateY(20px);
 
-  /* Stagger delay based on index */
   animation-delay: ${(props) => props.delay || 0}s;
 `;
 
 const GridLayout = () => (
   <Background>
-    <NavBar />
+    <Item colSpan={8} rowSpan={2} delay={0.4}>
+      <NavBar />
+    </Item>
     <GridContainer>
       <Item colSpan={2} rowSpan={8} delay={0.6}>
         <OverallScore />

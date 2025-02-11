@@ -8,23 +8,16 @@ import { faCalendarDays } from "@fortawesome/free-solid-svg-icons";
 function KeyDates() {
   const headers = ["Event", "Date"];
   const rows = [
-    ["CSC Meeting", "09 Oct 2024"],
-    ["Cyber Essentials Renewal", "17 Sep 2024"],
-    ["Information Security Policy launch", "01 Nov 2024"],
-    ["Acceptable Use Policy launch", "01 Dec 2024"],
-    ["Security Awarness Plan", "01 Jan 2025"],
+    ["CSC Meeting", "11 Feb 2025"],
+    ["Cyber Essentials Renewal", "17 Feb 2025"],
+    ["Security Policy launch", "01 Mar 2025"],
+    ["Acceptable Use Policy launch", "01 Mar 2024"],
+    ["Security Awarness Plan", "22 Mar 2025"],
   ];
 
   return (
     <Container>
       <Header
-        text={
-          <p>
-            The Key Dates component shows important dates relevant to the
-            organization, such as renewal dates, deadlines, and other
-            significant events.
-          </p>
-        }
         title={"Key Dates"}
         icon={<FontAwesomeIcon icon={faCalendarDays} />}
       />

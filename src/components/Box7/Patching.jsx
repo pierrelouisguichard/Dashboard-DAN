@@ -1,7 +1,7 @@
 import React from "react";
 
 function Patching() {
-  return <div>Patching</div>;
+  return <div></div>;
 }
 
 export default Patching;

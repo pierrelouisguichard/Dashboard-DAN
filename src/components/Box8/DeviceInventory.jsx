@@ -26,25 +26,6 @@ function DeviceInventory() {
   return (
     <Container>
       <Header
-        text={
-          <>
-            <p>
-              This component shows the total count of desktops, laptops, and
-              phones. Displays percentages for encryption and antivirus
-              coverage. Clicking on any category reveals additional details,
-              including:
-            </p>
-            <ul
-              style={{
-                padding: "0",
-                margin: "0",
-                listStylePosition: "inside",
-              }}
-            >
-              <li>Shows a detailed list of each device's name and model.</li>
-            </ul>
-          </>
-        }
         title={"d'Angelin Estate"}
         icon={<FontAwesomeIcon icon={faComputer} />}
       />
@@ -54,19 +35,19 @@ function DeviceInventory() {
             <input
               type="radio"
               name="tab2"
-              checked={activeTab === "Devices"}
-              onChange={() => setActiveTab("Devices")}
+              checked={activeTab === "Softwares"}
+              onChange={() => setActiveTab("Softwares")}
             />
-            <span className="name2">Devices</span>
+            <span className="name2">Softwares</span>
           </Radio>
           <Radio>
             <input
               type="radio"
               name="tab2"
-              checked={activeTab === "Softwares"}
-              onChange={() => setActiveTab("Softwares")}
+              checked={activeTab === "Devices"}
+              onChange={() => setActiveTab("Devices")}
             />
-            <span className="name2">Softwares</span>
+            <span className="name2">Devices</span>
           </Radio>
           <Radio>
             <input
