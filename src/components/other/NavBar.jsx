@@ -1,15 +1,14 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import { SignOutButton, PrintButton } from "./AuthButtons";
 
 const Wrapper = styled.div`
-  /* background-color: blue; */
+  background-color:white;
   height: 10vh;
-  font-size: 2.5rem;
-  margin: 0;
-  padding: 10px;
+  font-size: 2rem;
+  padding: 12px 20px;
   width: 100%;
   box-sizing: border-box;
   color: #186e98;
@@ -32,60 +31,68 @@ const LeftContainer = styled.div`
 `;
 
 const LogoLink = styled(Link)`
-  margin-right: 10px;
+  margin-right: 15px;
 `;
 
 const Logo = styled.img`
-  width: 300px;
+  width: 250px;
   height: auto;
 
   @media (max-width: 2000px) {
-    width: 250px;
+    width: 200px;
   }
 `;
 
 const Pill = styled.div`
-  width: 15px;
-  height: 15px;
-  background-color: #186e98;
-  border-radius: 50%;
-  margin-right: 10px;
+  width: 10px;
+  height: 25px;
+  background-color: #0d4f70;
+  border-radius: 10px;
+  margin-right: 12px;
 `;
 
 const TitleText = styled.div`
   text-align: left;
 `;
 
-const Inside = styled.div`
+const RightContainer = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 100%;
+  gap: 20px;
 `;
 
-const ButtonContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
+const Timestamp = styled.div`
+  font-size: 1rem;
+  font-weight: normal;
+  color: #186e98;
 `;
 
 function Title() {
+  const [timestamp, setTimestamp] = useState(new Date().toLocaleString());
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTimestamp(new Date().toLocaleString());
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <Inside>
-      <Wrapper>
-        <LeftContainer>
-          <LogoLink to="/agreement">
-            <Logo src={logo} alt="Logo" />
-          </LogoLink>
-          <Pill />
-          <TitleText>Cyber Security Dashboard</TitleText>
-        </LeftContainer>
-        <ButtonContainer>
-          <SignOutButton />
-          <PrintButton />
-        </ButtonContainer>
-      </Wrapper>
-    </Inside>
+    <Wrapper>
+      <LeftContainer>
+        <LogoLink to="/agreement">
+          <Logo src={logo} alt="Logo" />
+        </LogoLink>
+        <Pill />
+        <TitleText>Cyber Security Dashboard</TitleText>
+      </LeftContainer>
+      <RightContainer>
+        <Timestamp>{timestamp}</Timestamp>
+        <SignOutButton />
+        <PrintButton />
+      </RightContainer>
+    </Wrapper>
   );
 }
 

@@ -55,7 +55,7 @@ const Th = styled.th`
 
 const Td = styled.td`
   color: #186e98;
-  font-size: 1rem;
+  font-size: .9rem;
   text-align: left;
   border: none;
 
