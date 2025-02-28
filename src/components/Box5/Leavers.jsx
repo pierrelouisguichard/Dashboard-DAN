@@ -7,7 +7,6 @@ import aarman from "../../assets/aarman.jpeg";
 import lucrezia from "../../assets/lucrezia.jpeg";
 import federico from "../../assets/Federicco.jpeg";
 import nicolas from "../../assets/nicolas.jpeg";
-import gennaro from "../../assets/gennaro.jpeg";
 
 function Leavers() {
   const leavers = [
@@ -15,24 +14,9 @@ function Leavers() {
     { name: "Lucrezia Rossini", date: "21 Dec 2024", image: lucrezia },
     { name: "Federico Rotolo", date: "20 Nov 2024", image: federico },
     { name: "Nicolas Goig", date: "08 Nov 2024", image: nicolas },
-    // { name: "Gennaro Bertolino", date: "07 Nov 2024", image: gennaro },
   ];
 
   const [visibleLeavers, setVisibleLeavers] = useState(leavers);
-
-  useEffect(() => {
-    const updateVisibleLeavers = () => {
-      if (window.innerWidth < 1900) {
-        setVisibleLeavers(leavers.slice(0, 3));
-      } else {
-        setVisibleLeavers(leavers);
-      }
-    };
-
-    updateVisibleLeavers();
-    window.addEventListener("resize", updateVisibleLeavers);
-    return () => window.removeEventListener("resize", updateVisibleLeavers);
-  }, [leavers]);
 
   return (
     <Container>
@@ -89,7 +73,7 @@ const LeaverItem = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: 4px 0;
+  padding: 2px 0;
 `;
 
 const LeaverLeft = styled.div`
@@ -99,8 +83,8 @@ const LeaverLeft = styled.div`
 `;
 
 const LeaverImage = styled.img`
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   border-radius: 50%;
 `;
 

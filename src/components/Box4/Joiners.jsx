@@ -22,7 +22,7 @@ function Joiners() {
   useEffect(() => {
     const updateVisibleLeavers = () => {
       if (window.innerWidth < 1900) {
-        setVisibleLeavers(leavers.slice(0, 3));
+        setVisibleLeavers(leavers.slice(0, 4));
       } else {
         setVisibleLeavers(leavers);
       }

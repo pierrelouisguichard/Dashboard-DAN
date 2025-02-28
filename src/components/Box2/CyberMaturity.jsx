@@ -39,12 +39,12 @@ function CyberMaturity() {
       {
         label: "Vulnerability Score",
         data: [67, 57, 95, 100, 100, 88],
-        backgroundColor: "rgba(255, 2, 137, 0.128)",
-        borderColor: "#fc00b1",
+        backgroundColor: "rgba(255, 150, 2, 0.128)",
+        borderColor: "#fca000",
         borderWidth: 2,
         tension: 0.1,
         pointRadius: 5, // Show points
-        pointBackgroundColor: "#fc00b1",
+        pointBackgroundColor: "#fca000",
       },
       {
         label: "Target Score",
@@ -99,7 +99,7 @@ function CyberMaturity() {
         },
       },
       datalabels: {
-        color: "#fc00b1", // Blue color for labels
+        color: "#fca000", // Blue color for labels
         font: {
           weight: "bold",
           size: 14,
