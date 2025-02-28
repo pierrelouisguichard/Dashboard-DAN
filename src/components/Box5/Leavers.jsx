@@ -66,7 +66,10 @@ const LeaversList = styled.div`
   width: 100%;
   padding-left: 30px;
   padding-right: 30px;
+  height: 150px; /* Adjust height based on the row size */
+  overflow: hidden;
 `;
+
 
 const LeaverItem = styled.div`
   display: flex;

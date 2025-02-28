@@ -3,15 +3,15 @@ import styled from "styled-components";
 
 const Grid = styled.div`
   display: grid;
-  grid-template-columns: auto repeat(5, 65px);
-  grid-template-rows: auto repeat(5, 65px);
+  grid-template-columns: auto repeat(5, 60px);
+  grid-template-rows: auto repeat(5, 60px);
   gap: 3px;
   position: relative;
 `;
 
 const Cell = styled.div`
-  width: 65px;
-  height: 65px;
+  width: 60px;
+  height: 60px;
   background-color: ${(props) => props.color};
   border-radius: ${(props) => props.radius};
   display: flex;
